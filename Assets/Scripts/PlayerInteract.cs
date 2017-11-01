@@ -34,14 +34,10 @@ public class PlayerInteract : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButtonDown ("Interact")) {
-			if (heldObject == null) {
-				// Try to pick up an object
-				RaycastHit hitInfo;
-				// Debug.Log ("Fire");
-				// Debug.DrawRay (transform.position, transform.forward * INTERACT_DISTANCE, Color.green, 5.0f);
-				if (Physics.Raycast (cameraTransform.position, cameraTransform.forward, out hitInfo, INTERACT_DISTANCE, LayerMask.GetMask("Pickupable"))) {
-					
+		if (heldObject == null) {
+			RaycastHit hitInfo;
+			if (Physics.Raycast (cameraTransform.position, cameraTransform.forward, out hitInfo, INTERACT_DISTANCE, LayerMask.GetMask ("Pickupable"))) {
+				if (Input.GetButtonDown ("Interact")) {
 					Debug.Log (hitInfo.collider.gameObject.name);
 
 					if (hitInfo.collider.gameObject.GetComponent<Pickupable> ()) {
@@ -49,11 +45,12 @@ public class PlayerInteract : MonoBehaviour {
 						heldObject.GetComponent<Rigidbody> ().useGravity = false;
 					}
 				}
-			} else {
+			}
+		
+		} else if (Input.GetButtonDown ("Interact")) {
 				// Drop Object
 				heldObject.GetComponent<Rigidbody> ().useGravity = true;
 				heldObject = null;
-			}
 		}
 		centerObjectInCamera ();
 	}
