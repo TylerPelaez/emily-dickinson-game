@@ -8,7 +8,7 @@ public class Pivot : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		playerTransform = GameObject.Find ("FPSController").GetComponent<Transform>();
+		playerTransform = GameObject.Find ("Player").GetComponent<Transform>();
 	}
 	
 	// Update is called once per frame
