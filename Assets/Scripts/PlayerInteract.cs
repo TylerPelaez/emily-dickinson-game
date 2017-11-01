@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInteract : MonoBehaviour {
 
@@ -8,24 +9,28 @@ public class PlayerInteract : MonoBehaviour {
 	GameObject heldObject;
 	const float HOLD_DISTANCE = 2.0f;
 	const float INTERACT_DISTANCE = 3.0f;
+	Text pickupTextObject;
 
 
 	// Use this for initialization
 	void Start () {
 		heldObject = null;
 		cameraTransform = gameObject.GetComponentInChildren<Camera> ().gameObject.transform;
+
+		pickupTextObject = GameObject.Find ("PickupText").GetComponent<Text>();
 	}
 
 	void centerObjectInCamera() {
 		if (heldObject != null) {
 			RaycastHit hit;
 			Vector3 posVec;
-			Vector3 objectExtent = heldObject.GetComponent<BoxCollider> ().bounds.extents;
+			Vector3 objectExtent = heldObject.GetComponent<Collider> ().bounds.size;
 
 			if (Physics.Raycast (cameraTransform.position, cameraTransform.forward, out hit, HOLD_DISTANCE, LayerMask.GetMask ("Terrain"))) {
-				posVec = new Vector3 (hit.point.x - (cameraTransform.forward.x * objectExtent.x), hit.point.y - (cameraTransform.forward.y * objectExtent.y), hit.point.z - (cameraTransform.forward.z * objectExtent.z));
+				posVec = new Vector3 (hit.point.x - (cameraTransform.forward.x * objectExtent.x + 0.1f), hit.point.y - (cameraTransform.forward.y * objectExtent.y+ 0.1f), hit.point.z - (cameraTransform.forward.z * objectExtent.z + 0.1f));
 			} else {
 				posVec = new Vector3 (cameraTransform.position.x + (cameraTransform.forward.x * HOLD_DISTANCE), cameraTransform.position.y + (cameraTransform.forward.y * HOLD_DISTANCE), cameraTransform.position.z + (cameraTransform.forward.z * HOLD_DISTANCE));
+				Debug.Log (posVec);
 			}
 			heldObject.transform.position = posVec;
 			heldObject.transform.eulerAngles = new Vector3 (0f, cameraTransform.rotation.eulerAngles.y, 0f);
@@ -43,15 +48,31 @@ public class PlayerInteract : MonoBehaviour {
 					if (hitInfo.collider.gameObject.GetComponent<Pickupable> ()) {
 						heldObject = hitInfo.collider.gameObject;
 						heldObject.GetComponent<Rigidbody> ().useGravity = false;
+						heldObject.GetComponent<Rigidbody> ().detectCollisions = false;
+						heldObject.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeAll;
 					}
+				} else {
+					pickupTextObject.enabled = true;
+					pickupTextObject.text = "Click to Pick up.";
 				}
+			} else {
+				pickupTextObject.text = "";
+				pickupTextObject.enabled = false;
 			}
-		
 		} else if (Input.GetButtonDown ("Interact")) {
-				// Drop Object
-				heldObject.GetComponent<Rigidbody> ().useGravity = true;
-				heldObject = null;
+			heldObject.GetComponent<Rigidbody> ().useGravity = true;
+			heldObject.GetComponent<Rigidbody> ().detectCollisions = true;
+			heldObject.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
+			// Drop Object
+			heldObject = null;
+		} else {
+			
+			pickupTextObject.text = "";
+			pickupTextObject.enabled = false;
 		}
+	}
+
+	void FixedUpdate() {
 		centerObjectInCamera ();
 	}
 }
