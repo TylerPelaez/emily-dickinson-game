@@ -10,6 +10,7 @@ public class PlayerInteract : MonoBehaviour {
 	const float HOLD_DISTANCE = 2.0f;
 	const float INTERACT_DISTANCE = 3.0f;
 	Text pickupTextObject;
+	RigidbodyConstraints heldObjectConstraints;
 
 
 	// Use this for initialization
@@ -49,6 +50,7 @@ public class PlayerInteract : MonoBehaviour {
 						heldObject = hitInfo.collider.gameObject;
 						heldObject.GetComponent<Rigidbody> ().useGravity = false;
 						heldObject.GetComponent<Rigidbody> ().detectCollisions = false;
+						heldObjectConstraints = heldObject.GetComponent<Rigidbody> ().constraints;
 						heldObject.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeAll;
 					}
 				} else {
@@ -62,7 +64,7 @@ public class PlayerInteract : MonoBehaviour {
 		} else if (Input.GetButtonDown ("Interact")) {
 			heldObject.GetComponent<Rigidbody> ().useGravity = true;
 			heldObject.GetComponent<Rigidbody> ().detectCollisions = true;
-			heldObject.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
+			heldObject.GetComponent<Rigidbody> ().constraints = heldObjectConstraints;
 			// Drop Object
 			heldObject = null;
 		} else {
