@@ -6,16 +6,36 @@ using UnityStandardAssets.CrossPlatformInput;
 public class PlayerCam : MonoBehaviour
 {
     public MouseLook camLook;
+    public int crankLock;
+    public Transform lockPos;
     
 	void Start ()
     {
         camLook = new MouseLook();
         camLook.Init(gameObject.transform, Camera.main.transform);
+        crankLock = 0;
 	}
 	
 	void Update ()
     {
-        camLook.LookRotation(gameObject.transform, Camera.main.transform);
+        if (crankLock == 1)
+            moveToCrank();
+        else if (crankLock == 2)
+            moveFromCrank();
+        else
+            camLook.LookRotation(gameObject.transform, Camera.main.transform);
+    }
+
+    void moveToCrank()
+    {
+        Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, lockPos.position, .1f);
+        Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation, lockPos.rotation, .1f);
+    }
+
+    void moveFromCrank()
+    {
+        Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, transform.position, .1f);
+        Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation, transform.rotation, .1f);
     }
 }
 
