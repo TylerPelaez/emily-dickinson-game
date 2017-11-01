@@ -8,6 +8,18 @@ public class PlayerCam : MonoBehaviour
     public MouseLook camLook;
     public int crankLock;
     public Transform lockPos;
+    public float tick;
+    public int quad;
+    public float dist;
+    public float xAdd;
+    public float lastX;
+    public float lastLastX;
+    public float yAdd;
+    public float lastY;
+    public float lastLastY;
+    public float lastXDir;
+    public float lastYDir;
+    public bool clockwise;
     
 	void Start ()
     {
@@ -19,9 +31,16 @@ public class PlayerCam : MonoBehaviour
 	void Update ()
     {
         if (crankLock == 1)
+        {
             moveToCrank();
+            crankCrank();
+            SetCursorLock();
+        }
         else if (crankLock == 2)
+        {
             moveFromCrank();
+            SetCursorLock();
+        }
         else
             camLook.LookRotation(gameObject.transform, Camera.main.transform);
     }
@@ -30,6 +49,38 @@ public class PlayerCam : MonoBehaviour
     {
         Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, lockPos.position, .1f);
         Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation, lockPos.rotation, .1f);
+    }
+
+    void crankCrank() //potentially move this into PlayerInteract once it's working
+    {
+        /*lastLastX = lastX;
+        lastX = xAdd;
+        xAdd += CrossPlatformInputManager.GetAxis("Mouse X");
+        float xDir = lastLastX + lastX + xAdd;
+        lastLastY = lastY;
+        lastY = yAdd;
+        yAdd += CrossPlatformInputManager.GetAxis("Mouse Y");
+        float yDir = lastLastY + lastY + yAdd;
+        if ((xDir > 0) != (lastXDir > 0))
+        {
+            if (xDir > 0 && lastXDir < 0)
+                quad++;
+            else
+                quad--;
+        }
+        else if((yDir > 0) != (lastYDir > 0))
+        {
+            if (yDir > 0 && lastYDir < 0)
+                quad++;
+            else
+                quad--;
+        }*/
+    }
+
+    void SetCursorLock()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void moveFromCrank()
