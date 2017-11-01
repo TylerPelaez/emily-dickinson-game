@@ -9,7 +9,6 @@ public class PlayerInteract : MonoBehaviour {
 	const float HOLD_DISTANCE = 2.0f;
 	const float INTERACT_DISTANCE = 3.0f;
 
-
 	// Use this for initialization
 	void Start () {
 		heldObject = null;
@@ -47,14 +46,18 @@ public class PlayerInteract : MonoBehaviour {
 					if (hitInfo.collider.gameObject.GetComponent<Pickupable> ()) {
 						heldObject = hitInfo.collider.gameObject;
 						heldObject.GetComponent<Rigidbody> ().useGravity = false;
+						heldObject.GetComponent<Default_Obj_Behavior>().held = true;
 					}
 				}
 			} else {
 				// Drop Object
+				heldObject.GetComponent<Default_Obj_Behavior>().SnapTo();
 				heldObject.GetComponent<Rigidbody> ().useGravity = true;
+				heldObject.GetComponent<Default_Obj_Behavior>().held = false;
 				heldObject = null;
 			}
 		}
 		centerObjectInCamera ();
 	}
+
 }
