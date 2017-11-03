@@ -5,6 +5,7 @@ using UnityEngine;
 public class CrankTransformManager : MonoBehaviour {
 
 	Transform cameraLerpTransform;
+	Pivot controlledByCrank;
 
 	// Use this for initialization
 	void Start () {
@@ -15,6 +16,7 @@ public class CrankTransformManager : MonoBehaviour {
 			}
 		}
 
+		controlledByCrank = gameObject.GetComponentInChildren<Pivot> ();
 	}
 	
 	public Transform getCameraLerpTransform () {
@@ -22,5 +24,9 @@ public class CrankTransformManager : MonoBehaviour {
 		// We will hope everyone is being nice
 		// Ensure that if this function is ever used that the value does not change !!
 		return cameraLerpTransform;
+	}
+
+	public Pivot getControlledPivot() {
+		return controlledByCrank;
 	}
 }

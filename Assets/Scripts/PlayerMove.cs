@@ -9,15 +9,20 @@ public class PlayerMove : MonoBehaviour
     private float zMove;
     public float moveSpeed = .5f;
     public float maxSpeed = .5f;
+	private bool canMove;
 
     void Start()
     {
         xMove = 0f;
         zMove = 0f;
+		canMove = true;
     }
 
     private void FixedUpdate()
     {
+		if (!canMove) {
+			return;
+		}
         if (CrossPlatformInputManager.GetAxis("Vertical") == 1f)
         {
             zMove += moveSpeed * Time.deltaTime;
@@ -71,4 +76,12 @@ public class PlayerMove : MonoBehaviour
         else
             gameObject.transform.Translate(xMove, 0, zMove);
     }
+
+	public void lockMovement() {
+		canMove = false;
+	}
+
+	public void unlockMovement() {
+		canMove = true;
+	}
 }
