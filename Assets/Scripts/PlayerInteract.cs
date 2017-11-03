@@ -12,7 +12,6 @@ public class PlayerInteract : MonoBehaviour {
 	Text pickupTextObject;
 	RigidbodyConstraints heldObjectConstraints;
 
-
 	// Use this for initialization
 	void Start () {
 		heldObject = null;
@@ -52,6 +51,7 @@ public class PlayerInteract : MonoBehaviour {
 						heldObject.GetComponent<Rigidbody> ().detectCollisions = false;
 						heldObjectConstraints = heldObject.GetComponent<Rigidbody> ().constraints;
 						heldObject.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeAll;
+						heldObject.GetComponent<Default_Obj_Behavior>().held = true;
 					}
 				} else {
 					pickupTextObject.enabled = true;
@@ -62,10 +62,12 @@ public class PlayerInteract : MonoBehaviour {
 				pickupTextObject.enabled = false;
 			}
 		} else if (Input.GetButtonDown ("Interact")) {
+			// Drop Object
 			heldObject.GetComponent<Rigidbody> ().useGravity = true;
 			heldObject.GetComponent<Rigidbody> ().detectCollisions = true;
 			heldObject.GetComponent<Rigidbody> ().constraints = heldObjectConstraints;
-			// Drop Object
+			heldObject.GetComponent<Default_Obj_Behavior>().SnapTo();
+			heldObject.GetComponent<Default_Obj_Behavior>().held = false;
 			heldObject = null;
 		} else {
 			
@@ -77,4 +79,5 @@ public class PlayerInteract : MonoBehaviour {
 	void FixedUpdate() {
 		centerObjectInCamera ();
 	}
+
 }
