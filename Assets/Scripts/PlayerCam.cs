@@ -6,16 +6,87 @@ using UnityStandardAssets.CrossPlatformInput;
 public class PlayerCam : MonoBehaviour
 {
     public MouseLook camLook;
+    public int crankLock;
+    public Transform lockPos;
+    public float tick;
+    public int quad;
+    public float dist;
+    public float xAdd;
+    public float lastX;
+    public float lastLastX;
+    public float yAdd;
+    public float lastY;
+    public float lastLastY;
+    public float lastXDir;
+    public float lastYDir;
+    public bool clockwise;
     
 	void Start ()
     {
         camLook = new MouseLook();
         camLook.Init(gameObject.transform, Camera.main.transform);
+        crankLock = 0;
 	}
 	
 	void Update ()
     {
-        camLook.LookRotation(gameObject.transform, Camera.main.transform);
+        if (crankLock == 1)
+        {
+            moveToCrank();
+            crankCrank();
+            SetCursorLock();
+        }
+        else if (crankLock == 2)
+        {
+            moveFromCrank();
+            SetCursorLock();
+        }
+        else
+            camLook.LookRotation(gameObject.transform, Camera.main.transform);
+    }
+
+    void moveToCrank()
+    {
+        Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, lockPos.position, .1f);
+        Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation, lockPos.rotation, .1f);
+    }
+
+    void crankCrank() //potentially move this into PlayerInteract once it's working
+    {
+        /*lastLastX = lastX;
+        lastX = xAdd;
+        xAdd += CrossPlatformInputManager.GetAxis("Mouse X");
+        float xDir = lastLastX + lastX + xAdd;
+        lastLastY = lastY;
+        lastY = yAdd;
+        yAdd += CrossPlatformInputManager.GetAxis("Mouse Y");
+        float yDir = lastLastY + lastY + yAdd;
+        if ((xDir > 0) != (lastXDir > 0))
+        {
+            if (xDir > 0 && lastXDir < 0)
+                quad++;
+            else
+                quad--;
+        }
+        else if((yDir > 0) != (lastYDir > 0))
+        {
+            if (yDir > 0 && lastYDir < 0)
+                quad++;
+            else
+                quad--;
+        }*/
+    }
+
+    void SetCursorLock()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    void moveFromCrank()
+    {
+        Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, transform.position, .1f);
+        Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation, transform.rotation, .1f);
     }
 }
 
@@ -24,8 +95,8 @@ public class MouseLook
     public float XSensitivity = 2f;
     public float YSensitivity = 2f;
     public bool clampVerticalRotation = true;
-    public float MinimumX = -90F;
-    public float MaximumX = 90F;
+    public float MinimumX = -47F;
+    public float MaximumX = 47F;
     public bool smooth;
     public float smoothTime = 5f;
     public bool lockCursor = true;
