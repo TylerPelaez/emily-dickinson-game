@@ -12,6 +12,7 @@ public class PlayerInteract : MonoBehaviour {
 	// External References being found at start or at runtime
 	private Transform cameraTransform;
 	private GameObject heldObject;
+	private Pivot pivotOfSnappedCrank;
 	private RigidbodyConstraints heldObjectConstraints;
 
 	private Text pickupTextObject;
@@ -52,13 +53,13 @@ public class PlayerInteract : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	public void updateInteractLogic () {
+	public void updateInteractLogic (bool interactPressed) {
 		if (heldObject == null) {
 			// Player isn't holding an object
 			RaycastHit hitInfo;
 			if (Physics.Raycast (cameraTransform.position, cameraTransform.forward, out hitInfo, INTERACT_DISTANCE, LayerMask.GetMask ("Pickupable"))) {
 				// There's an object that can be picked up in front of the player.
-				if (Input.GetButtonDown ("Interact")) {
+				if (interactPressed) {
 					pickupObject (hitInfo.collider.gameObject);
 				} else {
 					pickupTextObject.enabled = true;
@@ -68,12 +69,13 @@ public class PlayerInteract : MonoBehaviour {
 				pickupTextObject.text = "";
 				pickupTextObject.enabled = false;
 			}
-		} else if (Input.GetButtonDown ("Interact")) {
-			Transform cameraLerpTransform = dropHeldObject ();
+		} else if (interactPressed) {
+			CrankTransformManager snappedTransformManager = dropHeldObject ();
 
-			if (cameraLerpTransform != null) {
+			if (snappedTransformManager != null) {
 				// Held Object snapped to something, lets lerp to the expected spot
-				playerCamScript.beginLerpToLockPos(cameraLerpTransform);
+				playerCamScript.beginLerpToLockPos(snappedTransformManager);
+
 			}
 		} else {
 			
@@ -91,19 +93,22 @@ public class PlayerInteract : MonoBehaviour {
 		heldObject.GetComponent<Default_Obj_Behavior>().held = true;
 	}
 
-	private Transform dropHeldObject() {
-		Transform cameraLerpTransform = null;
+	private CrankTransformManager dropHeldObject() {
+		// If the held object snapped to a crank when it was dropped, return the crankTransformManager of that crank
+		// Else, return null.
+		CrankTransformManager snappedTo = null;
 		if (heldObject != null) {
 			heldObject.GetComponent<Rigidbody> ().isKinematic = false;
 			// Restore object's previous constraints
 			heldObject.GetComponent<Rigidbody> ().constraints = heldObjectConstraints;
 
-			cameraLerpTransform = heldObject.GetComponent<Default_Obj_Behavior>().SnapTo();
+			snappedTo = heldObject.GetComponent<Default_Obj_Behavior>().SnapTo();
+
 			heldObject.GetComponent<Default_Obj_Behavior>().held = false;
 		}
 
 		heldObject = null;
 
-		return cameraLerpTransform;
+		return snappedTo;
 	}
 }
