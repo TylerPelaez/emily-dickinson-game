@@ -5,88 +5,196 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class PlayerCam : MonoBehaviour
 {
+	private enum CAMERA_STATE
+	{
+		FREE_CAM,
+		LOCK_CAM,
+		LERPING_TO_LOCK_CAM,
+		LERPING_TO_FREE_CAM
+	};
+
+	// For moving the camera around in Free cam mode
     public MouseLook camLook;
-    public int crankLock;
-    public Transform lockPos;
-    public float tick;
-    public int quad;
-    public float dist;
-    public float xAdd;
-    public float lastX;
-    public float lastLastX;
-    public float yAdd;
-    public float lastY;
-    public float lastLastY;
-    public float lastXDir;
-    public float lastYDir;
-    public bool clockwise;
+
+	// These 2 classes are heavily intermingled. Reduce coupling if there is a chance.
+	private PlayerInteract playerInteract;
+
+	// For lerping:
+	private const float LERP_SPEED = 2.0f;
+	private Transform lockPos;
+	private CAMERA_STATE cameraState;
+	private float startLerpTime;
+	private float lerpTimer;
+
+	// For turning the crank
+	private const int CIRCLE_TURN_CONSISTENCY_THRESHOLD = 10;
+	private const int CIRCLE_TURN_CONSISTENCY_MAX = 15;
+	Vector2 oldest;
+	Vector2 middle;
+	Vector2 newest;
+	int consistentTurnCount;
+
     
 	void Start ()
     {
         camLook = new MouseLook();
         camLook.Init(gameObject.transform, Camera.main.transform);
-        crankLock = 0;
+        cameraState = CAMERA_STATE.FREE_CAM;
+		playerInteract = gameObject.GetComponent<PlayerInteract> ();
 	}
 	
 	void Update ()
     {
-        if (crankLock == 1)
-        {
-            moveToCrank();
-            crankCrank();
-            SetCursorLock();
-        }
-        else if (crankLock == 2)
-        {
-            moveFromCrank();
-            SetCursorLock();
-        }
-        else
-            camLook.LookRotation(gameObject.transform, Camera.main.transform);
+		if (cameraState == CAMERA_STATE.FREE_CAM) {
+			camLook.LookRotation (gameObject.transform, Camera.main.transform);
+			playerInteract.updateInteractLogic ();
+		}
     }
 
-    void moveToCrank()
+	void FixedUpdate () {
+		// We want lerping to occur in fixed intervals
+		if (cameraState == CAMERA_STATE.LERPING_TO_LOCK_CAM) {
+			moveToCrank ();
+			SetCursorLock ();
+		} else if (cameraState == CAMERA_STATE.LERPING_TO_FREE_CAM) {
+			moveFromCrank ();
+			SetCursorLock ();
+		} else if (cameraState == CAMERA_STATE.FREE_CAM) {
+			// player cam and player interact are very closely coupled
+			// TODO: Split them apart or put them together, just end this silly message passing.
+			playerInteract.centerObjectInCamera ();
+		}  else if (cameraState == CAMERA_STATE.LOCK_CAM){
+			crankCrank ();
+			SetCursorLock ();
+		}
+	}
+
+	public void beginLerpToLockPos(Transform newLockPos) {
+		lockPos = newLockPos;
+		cameraState = CAMERA_STATE.LERPING_TO_LOCK_CAM;
+		startLerpTime = Time.time;
+		// Calculate how long we want to lerp for
+		lerpTimer = (Vector3.Distance (transform.position, newLockPos.position) / LERP_SPEED);
+	}
+
+	private void beginLerpToOldPos() {
+		cameraState = CAMERA_STATE.LERPING_TO_FREE_CAM;
+		startLerpTime = Time.time;
+		// Calculate how long we want to lerp for
+		lerpTimer = (Vector3.Distance (transform.position, lockPos.position) / LERP_SPEED);
+		lockPos = null;
+	}
+
+	private bool lerpCameraToTransform(Transform origin, Transform destination) {
+		// I finally found out how to lerp!!!
+		// http://www.blueraja.com/blog/404/how-to-use-unity-3ds-linear-interpolation-vector3-lerp-correctly
+		// The power of math!
+		float timeSinceStarted = Time.time - startLerpTime;
+		float percentageComplete = timeSinceStarted / lerpTimer;
+
+		Camera.main.transform.position = Vector3.Lerp (origin.position, destination.position, percentageComplete);
+		Camera.main.transform.rotation = Quaternion.Lerp (origin.rotation, destination.rotation, percentageComplete);
+		return (percentageComplete >= 1.0f);
+	}
+
+    private void moveToCrank()
     {
-        Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, lockPos.position, .1f);
-        Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation, lockPos.rotation, .1f);
+		if (lerpCameraToTransform (Camera.main.transform, lockPos)) {
+			cameraState = CAMERA_STATE.LOCK_CAM;
+		}
     }
 
-    void crankCrank() //potentially move this into PlayerInteract once it's working
+	private void moveFromCrank()
+	{
+		if (lerpCameraToTransform (Camera.main.transform, gameObject.transform)) {
+			cameraState = CAMERA_STATE.FREE_CAM;
+		}
+	}
+
+    private void crankCrank() //potentially move this into PlayerInteract once it's working
     {
-        /*lastLastX = lastX;
-        lastX = xAdd;
-        xAdd += CrossPlatformInputManager.GetAxis("Mouse X");
-        float xDir = lastLastX + lastX + xAdd;
-        lastLastY = lastY;
-        lastY = yAdd;
-        yAdd += CrossPlatformInputManager.GetAxis("Mouse Y");
-        float yDir = lastLastY + lastY + yAdd;
-        if ((xDir > 0) != (lastXDir > 0))
-        {
-            if (xDir > 0 && lastXDir < 0)
-                quad++;
-            else
-                quad--;
-        }
-        else if((yDir > 0) != (lastYDir > 0))
-        {
-            if (yDir > 0 && lastYDir < 0)
-                quad++;
-            else
-                quad--;
-        }*/
-    }
+		if (Input.GetButtonDown ("Cancel Interact")) {
+			beginLerpToOldPos ();
+		} else if (Input.GetButtonDown ("Interact")) {
+			newest = new Vector2 (0f, 0f);
+			oldest = new Vector2(float.NaN, float.NaN);
+			middle = new Vector2(float.NaN, float.NaN);
+			consistentTurnCount = 0;
+		} else if (Input.GetButtonUp ("Interact")) {
+			oldest = new Vector2(float.NaN, float.NaN);
+			middle = new Vector2(float.NaN, float.NaN);
+			newest = new Vector2(float.NaN, float.NaN);
+			consistentTurnCount = 0;
+		} else if (Input.GetButton ("Interact")) {
+			float deltaX = CrossPlatformInputManager.GetAxis ("Mouse X");
+			float deltaY = CrossPlatformInputManager.GetAxis ("Mouse Y");
 
-    void SetCursorLock()
+
+			// Detection of a circle gesture:
+			// As seen on https://answers.unity.com/questions/219958/touch-gestures-recognising-a-circle.html
+			// Without the power of math this would be very silly to do
+			oldest = (!float.IsNaN(middle.x)) ? new Vector2 (middle.x, middle.y) : new Vector2(float.NaN, float.NaN);
+			middle = new Vector2(newest.x, newest.y);
+			newest = new Vector2 (newest.x + deltaX, newest.y + deltaY);
+
+
+			// Mouse is not moving or it moves very slowly
+			const float epsilon = 0.01f;
+			if (Mathf.Abs (deltaX) < epsilon || Mathf.Abs (deltaY) < epsilon) {
+				consistentTurnCount = 0;
+				return;
+			}
+
+			if (float.IsNaN(oldest.x)) {
+				return;
+			}
+
+			Vector2 olderDelta = (oldest - middle).normalized;
+			Vector2 newerDelta = (newest - middle).normalized;
+
+			Vector2 newPerpendicular = new Vector2 (newerDelta.y, -(newerDelta.x));
+			float dotProduct = Vector2.Dot (olderDelta, newPerpendicular);
+
+
+			// Now we see if player has been consistently turning clockwise or counterclockwise.
+
+			// The following will allow for rapid switching between clockwise and counterclockwise.
+			// Commenting it out will make it so there is more of a transition between clockwise and counterclockwise
+//			if (consistentTurnCount > 0) {
+//				if (dotProduct < 0) {
+//					consistentTurnCount = 0;
+//					return;
+//				}
+//			} else if (consistentTurnCount < 0) {
+//				if (dotProduct > 0) {
+//					consistentTurnCount = 0;
+//					return;
+//				}
+//			}
+
+			consistentTurnCount += dotProduct > 0 ? 1 : -1;
+
+			if (consistentTurnCount > CIRCLE_TURN_CONSISTENCY_MAX) {
+				consistentTurnCount = CIRCLE_TURN_CONSISTENCY_MAX;
+			} else if (consistentTurnCount < -CIRCLE_TURN_CONSISTENCY_MAX) {
+				consistentTurnCount = -CIRCLE_TURN_CONSISTENCY_MAX;
+			}
+
+			if (consistentTurnCount > CIRCLE_TURN_CONSISTENCY_THRESHOLD) {
+				Debug.Log ("Clockwise");
+			} else if (consistentTurnCount < -CIRCLE_TURN_CONSISTENCY_THRESHOLD) {
+				Debug.Log ("Counter Clockwise");
+			}
+
+
+		}
+    }
+		
+
+    private void SetCursorLock()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-    }
-
-    void moveFromCrank()
-    {
-        Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, transform.position, .1f);
-        Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation, transform.rotation, .1f);
     }
 }
 

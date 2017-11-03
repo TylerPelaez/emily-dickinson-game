@@ -16,11 +16,13 @@ public class Default_Obj_Behavior : MonoBehaviour {
 	void Update () {
 	}
 
-	public void SnapTo(){
+	public Transform SnapTo(){
 		if(snap_obj != null){
 			transform.position = snap_obj.transform.position;
+			return snap_obj.GetComponent<CrankTransformManager>().getCameraLerpTransform();
 		}else{
 			transform.position = transform.position;
+			return null;
 		}
 	}
 
@@ -28,6 +30,7 @@ public class Default_Obj_Behavior : MonoBehaviour {
 		Debug.Log("entered");
 		if(col.gameObject.tag == gameObject.tag){
 			snap_obj = col.transform.gameObject;
+
 		}else{
 			snap_obj = null;
 			Debug.Log("need correct obj");
