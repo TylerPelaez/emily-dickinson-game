@@ -49,7 +49,7 @@ public class PlayerInteract : MonoBehaviour {
             {
                 if (Input.GetButtonDown("Interact"))
                 {
-                    Debug.Log(hitInfo.collider.gameObject.name);
+                    //Debug.Log(hitInfo.collider.gameObject.name);
 
                     if (hitInfo.collider.gameObject.GetComponent<Pickupable>())
                     {
@@ -72,6 +72,11 @@ public class PlayerInteract : MonoBehaviour {
                     pickupTextObject.text = "Click to Pick up.";
                 }
             }
+            else
+            {
+                pickupTextObject.text = "";
+                pickupTextObject.enabled = false;
+            }
         }
         else if (Input.GetButtonDown("Interact"))
         {
@@ -83,6 +88,8 @@ public class PlayerInteract : MonoBehaviour {
             heldObject.GetComponent<Rigidbody>().useGravity = true;
             heldObject.GetComponent<Default_Obj_Behavior>().held = false;
             heldObject = null;
+            pickupTextObject.text = "";
+            pickupTextObject.enabled = false;
         }
         else
         {
