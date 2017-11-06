@@ -28,28 +28,18 @@ public class PlayerInteract : MonoBehaviour {
 		pickupTextObject = GameObject.Find ("PickupText").GetComponent<Text>();
 	}
 
-	public void centerObjectInCamera() {
-		if (heldObject != null) {
-			RaycastHit hit;
-			Vector3 newHeldObjectPos;
+    void Update ()
+    {
+        centerObjectInCamera();
+    }
 
-			if (Physics.Raycast (cameraTransform.position, cameraTransform.forward, out hit, HOLD_DISTANCE, LayerMask.GetMask ("Terrain"))) {
-				Vector3 objectExtent = heldObject.GetComponent<Collider> ().bounds.size;
-
-				newHeldObjectPos = new Vector3 (hit.point.x - (cameraTransform.forward.x * objectExtent.x + HOLD_DISTANCE_BUFFER),
-									  			hit.point.y - (cameraTransform.forward.y * objectExtent.y + HOLD_DISTANCE_BUFFER), 
-									  			hit.point.z - (cameraTransform.forward.z * objectExtent.z + HOLD_DISTANCE_BUFFER));
-			} else {
-				newHeldObjectPos = new Vector3 (cameraTransform.position.x + (cameraTransform.forward.x * HOLD_DISTANCE),
-									  			cameraTransform.position.y + (cameraTransform.forward.y * HOLD_DISTANCE),
-					   				  			cameraTransform.position.z + (cameraTransform.forward.z * HOLD_DISTANCE));
-			}
-
-			// Neurotically trying to stop held object from jittering
-			heldObject.transform.position = newHeldObjectPos;
-			heldObject.GetComponent<Rigidbody> ().position = newHeldObjectPos;
-			heldObject.transform.eulerAngles = new Vector3 (0f, cameraTransform.rotation.eulerAngles.y, 0f);
-		}
+	void centerObjectInCamera () {
+        if (heldObject != null)
+        {
+            Vector3 posVec = new Vector3(cameraTransform.position.x + (cameraTransform.forward.x * HOLD_DISTANCE), cameraTransform.position.y + (cameraTransform.forward.y * HOLD_DISTANCE), cameraTransform.position.z + (cameraTransform.forward.z * HOLD_DISTANCE));
+            heldObject.transform.position = posVec;
+            heldObject.transform.rotation = cameraTransform.rotation;
+        }
 	}
 	
 	// Update is called once per frame

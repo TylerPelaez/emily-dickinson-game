@@ -23,10 +23,22 @@ public class PlayerCam : MonoBehaviour
 	}
 
 	// For moving the camera around in Free cam mode
-    public MouseLook camLook;
+    public float XSensitivity = 2f;
+    public float YSensitivity = 2f;
+    public bool clampVerticalRotation = true;
+    public float MinimumX = -47F;
+    public float MaximumX = 47F;
+    public bool smooth;
+    public float smoothTime = 5f;
+    public bool lockCursor = true;
 
-	// These 2 classes are heavily intermingled. Reduce coupling if there is a chance.
-	private PlayerInteract playerInteract;
+
+    private Quaternion m_CharacterTargetRot;
+    private Quaternion m_CameraTargetRot;
+    private bool m_cursorIsLocked = true;
+
+    // These 2 classes are heavily intermingled. Reduce coupling if there is a chance.
+    private PlayerInteract playerInteract;
 	private PlayerMove playerMove;
 
 	// For lerping:
@@ -56,8 +68,9 @@ public class PlayerCam : MonoBehaviour
     
 	void Start ()
     {
-        camLook = new MouseLook();
-        camLook.Init(gameObject.transform, Camera.main.transform);
+        m_CharacterTargetRot = gameObject.transform.rotation;
+        m_CameraTargetRot = Camera.main.transform.rotation;
+        smooth = false;
         cameraState = CAMERA_STATE.FREE_CAM;
 		playerInteract = gameObject.GetComponent<PlayerInteract> ();
 		playerMove = gameObject.GetComponent<PlayerMove> ();
@@ -81,7 +94,17 @@ public class PlayerCam : MonoBehaviour
 		}
 		deltaX = CrossPlatformInputManager.GetAxis ("Mouse X");
 		deltaY = CrossPlatformInputManager.GetAxis ("Mouse Y");
-	}
+        if (cameraState == CAMERA_STATE.FREE_CAM)
+        {
+            // player cam and player interact are very closely coupled
+            // TODO: Split them apart or put them together, just end this silly message passing.
+
+            playerInteract.updateInteractLogic(inputState == CURRENT_INPUT.INTERACT_DOWN);
+            //playerInteract.centerObjectInCamera ();
+            LookRotation(gameObject.transform, Camera.main.transform);
+
+        }
+    }
 
 	void FixedUpdate () {
 		// We want lerping to occur in fixed intervals
@@ -91,20 +114,12 @@ public class PlayerCam : MonoBehaviour
 		} else if (cameraState == CAMERA_STATE.LERPING_TO_FREE_CAM) {
 			moveFromCrank ();
 			SetCursorLock ();
-		} else if (cameraState == CAMERA_STATE.FREE_CAM) {
-			// player cam and player interact are very closely coupled
-			// TODO: Split them apart or put them together, just end this silly message passing.
-
-			playerInteract.updateInteractLogic (inputState == CURRENT_INPUT.INTERACT_DOWN);
-			playerInteract.centerObjectInCamera ();
-			camLook.LookRotation (gameObject.transform, Camera.main.transform);
-
-		}  else if (cameraState == CAMERA_STATE.LOCK_CAM){
+		} else if (cameraState == CAMERA_STATE.LOCK_CAM){
 			crankCrank ();
 			SetCursorLock ();
-		}
-		inputState = CURRENT_INPUT.NONE;
-	}
+        }
+        inputState = CURRENT_INPUT.NONE;
+    }
 
 	public void beginLerpToLockPos(CrankTransformManager snappedCrankTransformManager) {
 		currentCrankPivot = snappedCrankTransformManager.getControlledPivot ();
@@ -261,6 +276,94 @@ public class PlayerCam : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    public void Init(Transform character, Transform camera)
+    {
+    }
+
+
+    public void LookRotation(Transform character, Transform camera)
+    {
+        float yRot = CrossPlatformInputManager.GetAxis("Mouse X") * XSensitivity;
+        float xRot = CrossPlatformInputManager.GetAxis("Mouse Y") * YSensitivity;
+
+        m_CharacterTargetRot *= Quaternion.Euler(0f, yRot, 0f);
+        m_CameraTargetRot *= Quaternion.Euler(-xRot, 0f, 0f);
+
+        if (clampVerticalRotation)
+            m_CameraTargetRot = ClampRotationAroundXAxis(m_CameraTargetRot);
+
+        if (smooth)
+        {
+            character.localRotation = Quaternion.Slerp(character.localRotation, m_CharacterTargetRot,
+                smoothTime * Time.deltaTime);
+            camera.localRotation = Quaternion.Slerp(camera.localRotation, m_CameraTargetRot,
+                smoothTime * Time.deltaTime);
+        }
+        else
+        {
+            character.localRotation = m_CharacterTargetRot;
+            camera.localRotation = m_CameraTargetRot;
+        }
+
+        UpdateCursorLock();
+    }
+
+    public void SetCursorLock(bool value)
+    {
+        lockCursor = value;
+        if (!lockCursor)
+        {//we force unlock the cursor if the user disable the cursor locking helper
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+    }
+
+    public void UpdateCursorLock()
+    {
+        //if the user set "lockCursor" we check & properly lock the cursos
+        if (lockCursor)
+            InternalLockUpdate();
+    }
+
+    private void InternalLockUpdate()
+    {
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            m_cursorIsLocked = false;
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            m_cursorIsLocked = true;
+        }
+
+        if (m_cursorIsLocked)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        else if (!m_cursorIsLocked)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+    }
+
+    Quaternion ClampRotationAroundXAxis(Quaternion q)
+    {
+        q.x /= q.w;
+        q.y /= q.w;
+        q.z /= q.w;
+        q.w = 1.0f;
+
+        float angleX = 2.0f * Mathf.Rad2Deg * Mathf.Atan(q.x);
+
+        angleX = Mathf.Clamp(angleX, MinimumX, MaximumX);
+
+        q.x = Mathf.Tan(0.5f * Mathf.Deg2Rad * angleX);
+
+        return q;
     }
 }
 
