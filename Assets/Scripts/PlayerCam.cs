@@ -94,16 +94,6 @@ public class PlayerCam : MonoBehaviour
 		}
 		deltaX = CrossPlatformInputManager.GetAxis ("Mouse X");
 		deltaY = CrossPlatformInputManager.GetAxis ("Mouse Y");
-        if (cameraState == CAMERA_STATE.FREE_CAM)
-        {
-            // player cam and player interact are very closely coupled
-            // TODO: Split them apart or put them together, just end this silly message passing.
-
-            playerInteract.updateInteractLogic(inputState == CURRENT_INPUT.INTERACT_DOWN);
-            //playerInteract.centerObjectInCamera ();
-            LookRotation(gameObject.transform, Camera.main.transform);
-
-        }
     }
 
 	void FixedUpdate () {
@@ -114,7 +104,17 @@ public class PlayerCam : MonoBehaviour
 		} else if (cameraState == CAMERA_STATE.LERPING_TO_FREE_CAM) {
 			moveFromCrank ();
 			SetCursorLock ();
-		} else if (cameraState == CAMERA_STATE.LOCK_CAM){
+        } else if (cameraState == CAMERA_STATE.FREE_CAM)
+        {
+            // player cam and player interact are very closely coupled
+            // TODO: Split them apart or put them together, just end this silly message passing.
+
+            playerInteract.updateInteractLogic(inputState == CURRENT_INPUT.INTERACT_DOWN);
+            //playerInteract.centerObjectInCamera ();
+            LookRotation(gameObject.transform, Camera.main.transform);
+
+        }
+        else if (cameraState == CAMERA_STATE.LOCK_CAM){
 			crankCrank ();
 			SetCursorLock ();
         }
@@ -285,8 +285,8 @@ public class PlayerCam : MonoBehaviour
 
     public void LookRotation(Transform character, Transform camera)
     {
-        float yRot = CrossPlatformInputManager.GetAxis("Mouse X") * XSensitivity;
-        float xRot = CrossPlatformInputManager.GetAxis("Mouse Y") * YSensitivity;
+        float yRot = deltaX * XSensitivity;
+        float xRot = deltaY * YSensitivity;
 
         m_CharacterTargetRot *= Quaternion.Euler(0f, yRot, 0f);
         m_CameraTargetRot *= Quaternion.Euler(-xRot, 0f, 0f);
