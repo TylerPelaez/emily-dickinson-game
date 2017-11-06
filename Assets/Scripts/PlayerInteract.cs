@@ -12,8 +12,11 @@ public class PlayerInteract : MonoBehaviour {
 	// External References being found at start or at runtime
 	private Transform cameraTransform;
 	private GameObject heldObject;
-	private Pivot pivotOfSnappedCrank;
+    private Rigidbody heldObjectBody;
+    private Default_Obj_Behavior heldObjectBhvr;
+    private Pivot pivotOfSnappedCrank;
 	private RigidbodyConstraints heldObjectConstraints;
+    public float objectSpeed;
 
 	private Text pickupTextObject;
 
@@ -37,7 +40,9 @@ public class PlayerInteract : MonoBehaviour {
         if (heldObject != null)
         {
             Vector3 posVec = new Vector3(cameraTransform.position.x + (cameraTransform.forward.x * HOLD_DISTANCE), cameraTransform.position.y + (cameraTransform.forward.y * HOLD_DISTANCE), cameraTransform.position.z + (cameraTransform.forward.z * HOLD_DISTANCE));
-            heldObject.transform.position = posVec;
+            //heldObject.transform.position = posVec;
+            float distMod = Vector3.Distance(heldObject.transform.position, posVec);
+            heldObjectBody.velocity = (posVec - heldObject.transform.position).normalized * objectSpeed * Time.deltaTime * distMod;
             heldObject.transform.rotation = cameraTransform.rotation;
         }
 	}
@@ -76,11 +81,14 @@ public class PlayerInteract : MonoBehaviour {
 
 	private void pickupObject(GameObject obj) {
 		heldObject = obj;
-		// Store object constraints for future restoration.
-		heldObjectConstraints = heldObject.GetComponent<Rigidbody> ().constraints;
-		heldObject.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeAll;
-		heldObject.GetComponent<Rigidbody> ().isKinematic = true;
-		heldObject.GetComponent<Default_Obj_Behavior>().held = true;
+        // Store object constraints for future restoration.
+        heldObjectBody = heldObject.GetComponent<Rigidbody>();
+        heldObjectConstraints = heldObjectBody.constraints;
+        heldObjectBody.useGravity = false;
+        //heldObjectBody.constraints = RigidbodyConstraints.FreezeAll;
+        //heldObjectBody.isKinematic = true;
+        heldObjectBhvr = heldObject.GetComponent<Default_Obj_Behavior>();
+        heldObjectBhvr.held = true;
 	}
 
 	private CrankTransformManager dropHeldObject() {
@@ -88,13 +96,14 @@ public class PlayerInteract : MonoBehaviour {
 		// Else, return null.
 		CrankTransformManager snappedTo = null;
 		if (heldObject != null) {
-			heldObject.GetComponent<Rigidbody> ().isKinematic = false;
-			// Restore object's previous constraints
-			heldObject.GetComponent<Rigidbody> ().constraints = heldObjectConstraints;
+            //heldObjectBody.isKinematic = false;
+            // Restore object's previous constraints
+            heldObjectBody.useGravity = true;
+            heldObjectBody.constraints = heldObjectConstraints;
 
-			snappedTo = heldObject.GetComponent<Default_Obj_Behavior>().SnapTo();
+			snappedTo = heldObjectBhvr.SnapTo();
 
-			heldObject.GetComponent<Default_Obj_Behavior>().held = false;
+            heldObjectBhvr.held = false;
 		}
 
 		heldObject = null;
