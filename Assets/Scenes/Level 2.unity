@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.1, g: 0.1, b: 0.1, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 4
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
@@ -342,7 +342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 715548c7e260e4274b3dc3151c228dff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sun: {fileID: 1698239592}
+  sun: {fileID: 735364724}
   birdPrefab: {fileID: 1951690897183178, guid: 4eda11aba434549ff82de2cfb17ba2dd, type: 2}
 --- !u!1 &467408379
 GameObject:
@@ -527,6 +527,11 @@ Prefab:
     - target: {fileID: 4008296106384810, guid: 1108883d4bf332d47a554a16e71efd89, type: 2}
       propertyPath: m_LocalScale.z
       value: 2011
+      objectReference: {fileID: 0}
+    - target: {fileID: 114166110933426592, guid: 1108883d4bf332d47a554a16e71efd89,
+        type: 2}
+      propertyPath: showDebug
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1108883d4bf332d47a554a16e71efd89, type: 2}
@@ -759,7 +764,7 @@ Prefab:
         type: 2}
       propertyPath: sun
       value: 
-      objectReference: {fileID: 1698239592}
+      objectReference: {fileID: 735364724}
     - target: {fileID: 114971371052952438, guid: c7a63585e609f416da4c7edacba66559,
         type: 2}
       propertyPath: clouds
@@ -769,7 +774,7 @@ Prefab:
         type: 2}
       propertyPath: gradient
       value: 
-      objectReference: {fileID: 735364724}
+      objectReference: {fileID: 1698239592}
     - target: {fileID: 114971371052952438, guid: c7a63585e609f416da4c7edacba66559,
         type: 2}
       propertyPath: stars
