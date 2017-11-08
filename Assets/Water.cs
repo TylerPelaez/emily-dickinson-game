@@ -12,10 +12,17 @@ public class Water : MonoBehaviour {
 	float startTime;
 	float totalTime = 5f;
 
+	public GameObject end;
+
+	public void Start() {
+		
+	}
+
 	public void beginLerp() {
 		origin = gameObject.transform.position;
 		startTime = Time.time;
 		lerping = true;
+		end.GetComponent<AudioSource> ().Play ();
 		gameObject.GetComponent<Collider> ().enabled = false;
 	}
 
