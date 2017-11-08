@@ -123,7 +123,7 @@ public class Playback : MonoBehaviour
     float frame = 0;
     //int lastIndex = 0;
     //int framesPlayed = 0;
-    float delta = 0;
+    public float delta = 0;
     void Update()
     {
         if (isLoadingAsync)
