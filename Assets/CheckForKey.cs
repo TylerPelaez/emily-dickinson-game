@@ -5,6 +5,7 @@ using UnityEngine;
 public class CheckForKey : MonoBehaviour {
 
 	public GameObject Wall;
+	public GameObject pictureSnap;
 
 
 	// Use this for initialization
@@ -21,8 +22,9 @@ public class CheckForKey : MonoBehaviour {
 		if (other.gameObject.tag == "key") {
 			Debug.Log ("Hi, Key!");
 			Wall.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
-			Wall.GetComponent<Rigidbody> ().AddExplosionForce (10f, other.gameObject.transform.position, 3f);
-
+			Wall.GetComponent<Rigidbody> ().AddExplosionForce (20f, Wall.transform.position + Wall.transform.forward, 35f);
+			gameObject.GetComponent<Collider> ().enabled = false;
+			pictureSnap.GetComponent<Collider> ().enabled = true;
 		}
 	}
 }

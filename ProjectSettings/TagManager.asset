@@ -7,6 +7,7 @@ TagManager:
   - cloud
   - cup
   - key
+  - picture
   layers:
   - Default
   - TransparentFX
