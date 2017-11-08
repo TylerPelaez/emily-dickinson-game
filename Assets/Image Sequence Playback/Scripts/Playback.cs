@@ -29,7 +29,7 @@ public class Playback : MonoBehaviour
     int asyncIndex;
     List<string> asyncFiles;
     ResourceRequest currentRequest = null;
-
+    bool firstRun;
     // lists for multiple outputs
     public bool multiOut;
     public List<RawImage> uiOutList;
@@ -126,6 +126,7 @@ public class Playback : MonoBehaviour
     public float delta = 0;
     void Update()
     {
+
         if (isLoadingAsync)
         {
             if (asyncIndex == asyncFiles.Count) // sequence has finished loading
@@ -163,6 +164,13 @@ public class Playback : MonoBehaviour
                 PlayBack();
                 framesPlayed++;
             }*/
+            if(!firstRun)
+            {
+                delta = 9;
+                frame = 180;
+
+                firstRun = true;
+            }
 
             frame = delta / (1f / FPS);
 
