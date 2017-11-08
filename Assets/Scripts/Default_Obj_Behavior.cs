@@ -66,7 +66,7 @@ public class Default_Obj_Behavior : MonoBehaviour {
 		yield return new WaitForSeconds(12);
 
 
-		SceneManager.LoadScene ("Level 1");
+		SceneManager.LoadScene ("Menu");
 	}
 
 }
