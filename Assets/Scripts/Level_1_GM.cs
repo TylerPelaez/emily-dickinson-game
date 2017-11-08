@@ -31,6 +31,7 @@ public class Level_1_GM : MonoBehaviour {
 
 	void check_state(){
 		if(turning && sun.progress > 0.20f && sun.progress < 0.30f){
+			Debug.Log ("deadtree");
 			trees.GetComponent<Animator> ().SetBool ("finished", true);
 			treecollider.GetComponent<Collider> ().enabled = false;
 		}
