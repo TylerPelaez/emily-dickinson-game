@@ -22,6 +22,9 @@ public class PlayerInteract : MonoBehaviour {
 
 	private PlayerCam playerCamScript;
 
+	//Audio
+	public AudioSource pickup;
+
 	// Use this for initialization
 	void Start () {
 		heldObject = null;
@@ -82,6 +85,7 @@ public class PlayerInteract : MonoBehaviour {
 	}
 
 	private void pickupObject(GameObject obj) {
+		pickup.Play();
 		heldObject = obj;
         // Store object constraints for future restoration.
         heldObjectBody = heldObject.GetComponent<Rigidbody>();

@@ -32,6 +32,7 @@ public class PlayerCam : MonoBehaviour
     public float smoothTime = 5f;
     public bool lockCursor = true;
 
+	public AudioSource click;
 
     private Quaternion m_CharacterTargetRot;
     private Quaternion m_CameraTargetRot;
@@ -76,6 +77,9 @@ public class PlayerCam : MonoBehaviour
 	private CURRENT_INPUT inputState;
 	private float deltaX;
 	private float deltaY;
+
+	//Audio
+
     
 	void Start ()
     {
@@ -298,9 +302,11 @@ public class PlayerCam : MonoBehaviour
 
 					if (currentCrankPivot != null){
 						//dissappears
+						click.PlayDelayed(0.1f);
 						currentCrankPivot.Rotate(Time.fixedDeltaTime * CLOUD_ALPHA_SPEED);
 					}
 				}else{
+					click.PlayDelayed(0.1f);
 					currentCrankPivot.Rotate(Time.fixedDeltaTime * CLOUD_ALPHA_SPEED);
 					cloudPivot.Rotate(Time.fixedDeltaTime * CLOUD_ALPHA_SPEED);
 				}
@@ -317,10 +323,12 @@ public class PlayerCam : MonoBehaviour
 					clouds.reverse = false;
 					effects.reverse = false;
 					if (currentCrankPivot != null) {
+						click.PlayDelayed(0.1f);
 						currentCrankPivot.Rotate(-Time.fixedDeltaTime * CLOUD_ALPHA_SPEED);
 						//cloudRender.material.SetColor ("_TintColor", new Color (255f, 255f, 255f, 0f));
 					}
 				}else{
+					click.PlayDelayed(0.1f);
 					currentCrankPivot.Rotate(-Time.fixedDeltaTime * CLOUD_ALPHA_SPEED);
 					cloudPivot.Rotate(-Time.fixedDeltaTime * CLOUD_ALPHA_SPEED);
 				}
