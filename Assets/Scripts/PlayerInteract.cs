@@ -60,6 +60,13 @@ public class PlayerInteract : MonoBehaviour {
 					pickupTextObject.enabled = true;
 					pickupTextObject.text = "Click to Pick up.";
 				}
+			} else if (Physics.Raycast (cameraTransform.position, cameraTransform.forward, out hitInfo, INTERACT_DISTANCE, LayerMask.GetMask ("Bird"))) {
+				if (interactPressed) {
+					hitInfo.collider.gameObject.GetComponent<BirdBehavior> ().toggleStay ();
+				} else {
+					pickupTextObject.enabled = true;
+					pickupTextObject.text = "Click to feed bird";
+				}
 			} else {
 				pickupTextObject.text = "";
 				pickupTextObject.enabled = false;

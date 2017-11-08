@@ -39,6 +39,7 @@ public class FenceBehavior : MonoBehaviour {
 	private GameObject[] birds;
 
 	private int[,] indices = new int[3,5] { { 0, 1, 2, 3, 4 }, { 5, 6, 7, 8, 9 }, { 10, 11, 12, 13, 14 } };
+	private GameObject[] current_birds;
 
 	private int current_range;
 
@@ -52,6 +53,10 @@ public class FenceBehavior : MonoBehaviour {
 		ranges[2] = new RotationRangeObject (350, 10);
 
 		birds = new GameObject[15];
+		current_birds = new GameObject[5];
+		for (int i = 0; i < 5; i++) {
+			current_birds [i] = null;
+		}
 
 		for (int i = 0; i < 15; i++) {
 			birds [i] = Instantiate (birdPrefab, transform.position , transform.rotation);
@@ -68,24 +73,31 @@ public class FenceBehavior : MonoBehaviour {
 
 		float pivotRot = sunPivotObject.transform.rotation.eulerAngles.z;
 		if (current_range == -1) {
-			
 			for (int i = 0; i < ranges.Length; i++) {
 				if (ranges [i].inRange (pivotRot)) {
 					current_range = i;
+					Debug.Log (i);
+
 					for (int j = 0; j < 5; j++) {
-						birds [indices [current_range, j]].SetActive (true);
-						birds [indices [current_range, j]].GetComponent<BirdBehavior>().setToFencePosition ();
+						if (current_birds [j] == null) {
+							birds [indices [current_range, j]].SetActive (true);
+							birds [indices [current_range, j]].GetComponent<BirdBehavior> ().setToFencePosition ();
+							current_birds [j] = birds [indices [current_range, j]];
+						}
 					}
 					break;
 				}
 			}
 		} else {
 			if (!ranges [current_range].inRange (pivotRot)) {
-				for (int i = 0; i < 5; i++) {
-					birds [indices [current_range, i]].SetActive (false);
+				for (int i = 0; i < current_birds.Length; i++) {
+					if (current_birds[i] != null && !current_birds [i].GetComponent<BirdBehavior> ().getStay ()) {
+						current_birds [i].SetActive (false);
+						current_birds [i] = null;
+
+					}
 				}
 				current_range = -1;
-
 			}
 
 		}

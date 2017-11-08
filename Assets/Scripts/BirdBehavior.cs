@@ -7,10 +7,11 @@ public class BirdBehavior : MonoBehaviour {
 	Vector3 fencePosition;
 	private int row;
 	private int col;
+	bool stay;
 
 	// Use this for initialization
 	void Start () {
-		
+		stay = false;
 	}
 	
 	// Update is called once per frame
@@ -37,5 +38,13 @@ public class BirdBehavior : MonoBehaviour {
 
 	public void setToFencePosition() {
 		transform.position = new Vector3 (fencePosition.x, fencePosition.y, fencePosition.z);
+	}
+
+	public void toggleStay() {
+		stay = !stay;
+	}
+
+	public bool getStay() {
+		return stay;
 	}
 }
