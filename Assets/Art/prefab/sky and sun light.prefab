@@ -265,7 +265,7 @@ Transform:
   m_GameObject: {fileID: 1792512423986984}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 2211, y: 2211, z: 2211}
+  m_LocalScale: {x: 2011, y: 2011, z: 2011}
   m_Children: []
   m_Father: {fileID: 4872903213235042}
   m_RootOrder: 1
@@ -306,7 +306,7 @@ Transform:
   m_GameObject: {fileID: 1384275048985472}
   m_LocalRotation: {x: 0, y: -0.2765599, z: 0, w: 0.9609967}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 2211, y: 2211, z: 2211}
+  m_LocalScale: {x: 2111, y: 2111, z: 2111}
   m_Children: []
   m_Father: {fileID: 4321446631095242}
   m_RootOrder: 1
@@ -750,7 +750,7 @@ MonoBehaviour:
   sequenceFolder: sky effects
   FPS: 65
   loadOnAwake: 1
-  playOnAwake: 1
+  playOnAwake: 0
   loop: 1
   mode: 0
   playbackMat: {fileID: 2100000, guid: 751b338c85d84324e920c24343ea09dd, type: 2}
@@ -765,7 +765,7 @@ MonoBehaviour:
   source: {fileID: 0}
   clip: {fileID: 0}
   clipBaseFps: 10
-  showDebug: 0
+  showDebug: 1
   frame: 0
 --- !u!114 &114170008710047050
 MonoBehaviour:
@@ -783,7 +783,7 @@ MonoBehaviour:
   sequenceFolder: just clouds v2
   FPS: 20
   loadOnAwake: 1
-  playOnAwake: 1
+  playOnAwake: 0
   loop: 1
   mode: 0
   playbackMat: {fileID: 2100000, guid: 75cfe4f7815f62146ac5a32e996633f6, type: 2}
@@ -840,7 +840,7 @@ MonoBehaviour:
   sequenceFolder: sky v2
   FPS: 20
   loadOnAwake: 1
-  playOnAwake: 1
+  playOnAwake: 0
   loop: 1
   mode: 0
   playbackMat: {fileID: 2100000, guid: e57fcae8a2d3a5b48978e2572b6658b2, type: 2}
@@ -881,8 +881,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sun: {fileID: 114651350792317462}
-  clouds: {fileID: 0}
-  stars: {fileID: 0}
+  clouds: {fileID: 114170008710047050}
+  stars: {fileID: 1792512423986984}
 --- !u!114 &114921647041069846
 MonoBehaviour:
   m_ObjectHideFlags: 1
