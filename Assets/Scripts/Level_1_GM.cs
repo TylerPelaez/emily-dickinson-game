@@ -8,6 +8,8 @@ public class Level_1_GM : MonoBehaviour {
 	public GameObject trees;
 	public GameObject treecollider;
 	public AudioSource end;
+	public GameObject mug;
+	public GameObject glowMug;
 
 	bool turning;
 	// Use this for initialization
@@ -33,6 +35,12 @@ public class Level_1_GM : MonoBehaviour {
 
 	void check_state(){
 		if(turning && sun.progress > 0.20f && sun.progress < 0.30f){
+			if(!trees.GetComponent<Animator> ().GetBool ("finished")) {
+				mug.SetActive (false);
+				GameObject g = (GameObject)(Instantiate(glowMug));
+				g.transform.position=mug.transform.position;
+				g.transform.rotation = mug.transform.rotation;
+			}
 			trees.GetComponent<Animator> ().SetBool ("finished", true);
 			treecollider.GetComponent<Collider> ().enabled = false;
 			if(!end.isPlaying){

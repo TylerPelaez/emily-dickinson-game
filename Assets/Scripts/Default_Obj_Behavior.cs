@@ -7,13 +7,16 @@ public class Default_Obj_Behavior : MonoBehaviour {
 	private GameObject snap_obj;
 	public GameObject endSound;
 	public bool held {get; set;}
-
+	public GameObject blackFade;
+	Material mat;
 	public AudioSource putdown;
 
 	// Use this for initialization
 	void Start () {
 		snap_obj = null;
 		held = false;
+		mat = blackFade.GetComponent<Renderer>().material;
+
 	}
 	
 	// Update is called once per frame
@@ -63,7 +66,15 @@ public class Default_Obj_Behavior : MonoBehaviour {
 	IEnumerator EndGame()
 	{
 		
-		yield return new WaitForSeconds(12);
+		float startTime = Time.time;
+		float duration = 12f;
+
+		while(Time.time-startTime<duration)
+		{
+			mat.color  = Color.Lerp(new Color(0,0,0,0), new Color (0,0,0,1),(Time.time-startTime)/duration );
+			yield return new WaitForEndOfFrame();
+
+		}
 
 
 		SceneManager.LoadScene ("Menu");

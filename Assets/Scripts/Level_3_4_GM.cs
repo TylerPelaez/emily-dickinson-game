@@ -46,9 +46,9 @@ public class Level_3_4_GM : MonoBehaviour {
 	void check_level3(){
 		if (!level3_stage1) {
 			if ((
-				(sun.progress >= 0.58f && sun.progress <= 0.64f) && (cloudPivot.transform.rotation.eulerAngles.y >= 280 && cloudPivot.transform.rotation.eulerAngles.y <= 300)
+				(sun.progress >= 0.58f && sun.progress <= 0.65f) && (cloudPivot.transform.rotation.eulerAngles.y >= 270 && cloudPivot.transform.rotation.eulerAngles.y <= 305)
 			        ) || 
-				((sun.progress >= 0.49f && sun.progress <= 0.52f) && (cloudPivot.transform.rotation.eulerAngles.y >= 115 && cloudPivot.transform.rotation.eulerAngles.y <= 140))) {
+				((sun.progress >= 0.9 && sun.progress <= 0.53f) && (cloudPivot.transform.rotation.eulerAngles.y >= 110 && cloudPivot.transform.rotation.eulerAngles.y <= 140))) {
 				water.GetComponent<Water> ().beginLerp ();
 				level3_stage1 = true;
 			}
