@@ -11,8 +11,11 @@ public class PlayerMove : MonoBehaviour
     public float maxSpeed = .5f;
 	private bool canMove;
 
+	public AudioSource walk;
+
     void Start()
     {
+		walk = walk.GetComponent<AudioSource>();
         xMove = 0f;
         zMove = 0f;
 		canMove = true;
@@ -24,7 +27,8 @@ public class PlayerMove : MonoBehaviour
 			return;
 		}
         if (CrossPlatformInputManager.GetAxis("Vertical") == 1f)
-        {
+        {	
+			walk.mute = false;
             zMove += moveSpeed * Time.deltaTime;
             if (zMove > maxSpeed)
                 zMove = maxSpeed;
@@ -32,9 +36,11 @@ public class PlayerMove : MonoBehaviour
         else if (zMove > 0 && Mathf.Abs(zMove) >= .005f)
         {
             zMove -= moveSpeed * Time.deltaTime;
+			walk.mute = true;
         }
         if (CrossPlatformInputManager.GetAxis("Horizontal") == 1f)
         {
+			walk.mute = false;
             xMove += moveSpeed * Time.deltaTime;
             if (xMove > maxSpeed)
                 xMove = maxSpeed;
@@ -42,9 +48,11 @@ public class PlayerMove : MonoBehaviour
         else if (xMove > 0 && Mathf.Abs(xMove) >= .005f)
         {
             xMove -= moveSpeed * Time.deltaTime;
+			walk.mute = true;
         }
         if (CrossPlatformInputManager.GetAxis("Vertical") == -1f)
         {
+			walk.mute = false;
             zMove -= moveSpeed * Time.deltaTime;
             if (zMove < -maxSpeed)
                 zMove = -maxSpeed;
@@ -52,9 +60,11 @@ public class PlayerMove : MonoBehaviour
         else if (zMove < 0 && Mathf.Abs(zMove) >= .005f)
         {
             zMove += moveSpeed * Time.deltaTime;
+			walk.mute = true;
         }
         if (CrossPlatformInputManager.GetAxis("Horizontal") == -1f)
         {
+			walk.mute = false;
             xMove -= moveSpeed * Time.deltaTime;
             if (xMove < -maxSpeed)
                 xMove = -maxSpeed;
@@ -62,6 +72,7 @@ public class PlayerMove : MonoBehaviour
         else if (xMove < 0 && Mathf.Abs(xMove) >= .005f)
         {
             xMove += moveSpeed * Time.deltaTime;
+			walk.mute = true;
         }
         if (Mathf.Abs(xMove) < .005f)
         {
@@ -75,6 +86,7 @@ public class PlayerMove : MonoBehaviour
 			xMove = xMove / Mathf.Sqrt(Mathf.Sqrt(2));
 			zMove = zMove / Mathf.Sqrt(Mathf.Sqrt(2));
 		}
+
 		gameObject.transform.Translate(xMove, 0, zMove);
     }
 
