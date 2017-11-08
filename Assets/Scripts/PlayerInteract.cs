@@ -19,7 +19,7 @@ public class PlayerInteract : MonoBehaviour {
     public float objectSpeed;
 
 	private Text pickupTextObject;
-
+	private GameObject backOfPickup;
 	private PlayerCam playerCamScript;
 
 	//Audio
@@ -32,6 +32,8 @@ public class PlayerInteract : MonoBehaviour {
 		playerCamScript = gameObject.GetComponent<PlayerCam> ();
 
 		pickupTextObject = GameObject.Find ("PickupText").GetComponent<Text>();
+		backOfPickup = GameObject.Find ("backPickup").gameObject;
+
 	}
 
 	public void centerObjectInCamera () {
@@ -56,7 +58,8 @@ public class PlayerInteract : MonoBehaviour {
 					pickupObject (hitInfo.collider.gameObject);
 				} else {
 					pickupTextObject.enabled = true;
-					pickupTextObject.text = "Click to Pick up.";
+					pickupTextObject.text = "Click to pick up.";
+					backOfPickup.SetActive(true);
 				}
 			} else if (Physics.Raycast (cameraTransform.position, cameraTransform.forward, out hitInfo, INTERACT_DISTANCE, LayerMask.GetMask ("Bird"))) {
 				if (interactPressed) {
@@ -64,10 +67,13 @@ public class PlayerInteract : MonoBehaviour {
 				} else {
 					pickupTextObject.enabled = true;
 					pickupTextObject.text = "Click to feed bird";
+					backOfPickup.SetActive(true);
 				}
 			} else {
 				pickupTextObject.text = "";
 				pickupTextObject.enabled = false;
+				backOfPickup.SetActive(false);
+
 			}
 		} else if (interactPressed) {
 			CrankTransformManager snappedTransformManager = dropHeldObject ();
@@ -81,6 +87,8 @@ public class PlayerInteract : MonoBehaviour {
 			
 			pickupTextObject.text = "";
 			pickupTextObject.enabled = false;
+			backOfPickup.SetActive(false);
+
 		}
 	}
 
