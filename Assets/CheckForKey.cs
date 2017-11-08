@@ -22,7 +22,7 @@ public class CheckForKey : MonoBehaviour {
 		if (other.gameObject.tag == "key") {
 			Debug.Log ("Hi, Key!");
 			Wall.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
-			Wall.GetComponent<Rigidbody> ().AddExplosionForce (20f, Wall.transform.position + Wall.transform.forward, 35f);
+			Wall.GetComponent<Rigidbody> ().AddExplosionForce (40f, Wall.transform.position + Wall.transform.forward, 35f);
 			gameObject.GetComponent<Collider> ().enabled = false;
 			pictureSnap.GetComponent<Collider> ().enabled = true;
 		}

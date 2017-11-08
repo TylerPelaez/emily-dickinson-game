@@ -29,6 +29,7 @@ public class Default_Obj_Behavior : MonoBehaviour {
 			if (gameObject.tag != "picture") {
 				return snap_obj.GetComponent<CrankTransformManager> ();
 			} else {
+				transform.rotation = snap_obj.transform.rotation;
 				endSound.GetComponent<AudioSource> ().Play ();
 				StartCoroutine (EndGame ());
 				return null;
@@ -62,7 +63,7 @@ public class Default_Obj_Behavior : MonoBehaviour {
 	IEnumerator EndGame()
 	{
 		
-		yield return new WaitForSeconds(5);
+		yield return new WaitForSeconds(12);
 
 
 		SceneManager.LoadScene ("Level 1");

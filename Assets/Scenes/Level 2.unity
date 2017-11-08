@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.46825242, g: 0.4723574, b: 0.6072403, a: 1}
+  m_IndirectSpecularColor: {r: 0.61831254, g: 0.81088185, b: 0.8419818, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -640,12 +640,12 @@ Prefab:
     - target: {fileID: 224123321255226580, guid: da207cbd25241494790d307fa30c2918,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 426.5
+      value: 278.5
       objectReference: {fileID: 0}
     - target: {fileID: 224123321255226580, guid: da207cbd25241494790d307fa30c2918,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 193
+      value: 344
       objectReference: {fileID: 0}
     - target: {fileID: 224123321255226580, guid: da207cbd25241494790d307fa30c2918,
         type: 2}
@@ -942,40 +942,40 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 400002, guid: 598032e42ef6aab46b87044efa75cfcb, type: 3}
+    - target: {fileID: 4472807678604222, guid: a005c5431106f4c97aa2c5e4df304762, type: 2}
       propertyPath: m_LocalPosition.x
       value: 8.7
       objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 598032e42ef6aab46b87044efa75cfcb, type: 3}
+    - target: {fileID: 4472807678604222, guid: a005c5431106f4c97aa2c5e4df304762, type: 2}
       propertyPath: m_LocalPosition.y
       value: -0.038
       objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 598032e42ef6aab46b87044efa75cfcb, type: 3}
+    - target: {fileID: 4472807678604222, guid: a005c5431106f4c97aa2c5e4df304762, type: 2}
       propertyPath: m_LocalPosition.z
       value: -2.87
       objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 598032e42ef6aab46b87044efa75cfcb, type: 3}
+    - target: {fileID: 4472807678604222, guid: a005c5431106f4c97aa2c5e4df304762, type: 2}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 598032e42ef6aab46b87044efa75cfcb, type: 3}
+    - target: {fileID: 4472807678604222, guid: a005c5431106f4c97aa2c5e4df304762, type: 2}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 598032e42ef6aab46b87044efa75cfcb, type: 3}
+    - target: {fileID: 4472807678604222, guid: a005c5431106f4c97aa2c5e4df304762, type: 2}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 598032e42ef6aab46b87044efa75cfcb, type: 3}
+    - target: {fileID: 4472807678604222, guid: a005c5431106f4c97aa2c5e4df304762, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 598032e42ef6aab46b87044efa75cfcb, type: 3}
+    - target: {fileID: 4472807678604222, guid: a005c5431106f4c97aa2c5e4df304762, type: 2}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 598032e42ef6aab46b87044efa75cfcb, type: 3}
+  m_ParentPrefab: {fileID: 100100000, guid: a005c5431106f4c97aa2c5e4df304762, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1666768600
 GameObject:
@@ -1115,22 +1115,6 @@ AudioSource:
   m_PrefabParentObject: {fileID: 82845139096995154, guid: f73f6364941cdcf45a83a80d130cf8f7,
     type: 2}
   m_PrefabInternal: {fileID: 1728897364}
---- !u!1 &1848289622 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100002, guid: 598032e42ef6aab46b87044efa75cfcb, type: 3}
-  m_PrefabInternal: {fileID: 1456646839}
---- !u!65 &1848289625
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1848289622}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.8832121, y: 1.1639887, z: 0.99252367}
-  m_Center: {x: 0.1489482, y: 0.081994414, z: -0.003738165}
 --- !u!82 &1895843012 stripped
 AudioSource:
   m_PrefabParentObject: {fileID: 82823453484008134, guid: 68a5bccc735950c4ca1540516703c62a,
