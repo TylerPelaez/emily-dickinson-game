@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Level_3_4_GM : MonoBehaviour {
 	public GameObject cloud;
-	public GameObject sun;
+	public Playback sun;
 	public GameObject key;
 
 	public GameObject photo;

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 95d1f131256444c4eb2088b5452516f7
-timeCreated: 1510142568
+guid: 598032e42ef6aab46b87044efa75cfcb
+timeCreated: 1510141804
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -20,27 +20,27 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: stump bark
-    second: {fileID: 2100000, guid: d6f5427bab1741c4b97013bb75d4d1e1, type: 2}
+    second: {fileID: 2100000, guid: d96ec0b2d1edbbd46a9fc4915288c8fe, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: stump center
-    second: {fileID: 2100000, guid: 88997f695d7c65641ba24fa5e323daa0, type: 2}
+    second: {fileID: 2100000, guid: 3eb2d5a15c9f8584fb9eca48872624e1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: stump rings
-    second: {fileID: 2100000, guid: 0bdd523c8b4a30847a8246a35f614457, type: 2}
+    second: {fileID: 2100000, guid: 91454d692cf4b4d4ab9dcbfdfeb8186a, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: stump rocks
-    second: {fileID: 2100000, guid: 173969d8966a89744a4d1b1209ef20a5, type: 2}
+    second: {fileID: 2100000, guid: 664f5200d83f6bf4896648c13e7ca211, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: stump weeds
-    second: {fileID: 2100000, guid: 376fb3df5f728c54081721386cd948d4, type: 2}
+    second: {fileID: 2100000, guid: ede54439366657e45a5671696a3842cc, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
