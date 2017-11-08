@@ -7,7 +7,6 @@ public class CrankTransformManager : MonoBehaviour {
 	Transform cameraLerpTransform;
 	Pivot controlledByCrank;
 	public Pivot cloudControl;
-	public GameObject cloud;
 
 	public Playback sun;
 	public Playback clouds;
