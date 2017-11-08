@@ -62,6 +62,11 @@ public class PlayerCam : MonoBehaviour
 	const float SUN_REVOLVE_SPEED = 60f;
 	Pivot currentCrankPivot;
 
+	//Cloud objects
+	const float CLOUD_ALPHA_SPEED = 6f;
+	GameObject currentCloud;
+	Renderer cloudRender;
+
 	private CURRENT_INPUT inputState;
 	private float deltaX;
 	private float deltaY;
@@ -123,10 +128,15 @@ public class PlayerCam : MonoBehaviour
 
 	public void beginLerpToLockPos(CrankTransformManager snappedCrankTransformManager) {
 		currentCrankPivot = snappedCrankTransformManager.getControlledPivot ();
+		currentCloud = snappedCrankTransformManager.getCloud();
+		if(currentCloud != null){
+			cloudRender = currentCloud.GetComponent<Renderer>();
+		}
+
+
 		playerMove.lockMovement ();
 
 		gameObject.GetComponent<Rigidbody> ().isKinematic = true;
-
 
 		Transform newLockPos = snappedCrankTransformManager.getCameraLerpTransform();
 		lockPos = newLockPos;
@@ -261,11 +271,19 @@ public class PlayerCam : MonoBehaviour
 
 			if (consistentTurnCount > CIRCLE_TURN_CONSISTENCY_THRESHOLD) {
 				if(currentCrankPivot != null) {
+
 					currentCrankPivot.Rotate(Time.fixedDeltaTime * SUN_REVOLVE_SPEED);
+				}else if (currentCloud != null){
+					//dissappears
+					cloudRender.material.SetColor("_TintColor", new Color(255f, 255f, 255f, 1f));
 				}
 			} else if (consistentTurnCount < -CIRCLE_TURN_CONSISTENCY_THRESHOLD) {
 				if(currentCrankPivot != null) {
+					//reappears
 					currentCrankPivot.Rotate(-Time.fixedDeltaTime * SUN_REVOLVE_SPEED);
+				}else if (currentCloud != null){
+
+					cloudRender.material.SetColor("_TintColor", new Color(255f, 255f, 255f, 0f));
 				}
 			}
 		}

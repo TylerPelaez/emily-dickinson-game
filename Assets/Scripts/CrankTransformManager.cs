@@ -6,6 +6,7 @@ public class CrankTransformManager : MonoBehaviour {
 
 	Transform cameraLerpTransform;
 	Pivot controlledByCrank;
+	public GameObject cloud;
 
 	// Use this for initialization
 	void Start () {
@@ -15,8 +16,10 @@ public class CrankTransformManager : MonoBehaviour {
 				cameraLerpTransform = t;
 			}
 		}
-
-		controlledByCrank = gameObject.GetComponentInChildren<Pivot> ();
+		/*something that will deteremine what is "being cranked"*/
+		if(cloud == null){
+			controlledByCrank = gameObject.GetComponentInChildren<Pivot> ();
+		}
 	}
 	
 	public Transform getCameraLerpTransform () {
@@ -28,5 +31,9 @@ public class CrankTransformManager : MonoBehaviour {
 
 	public Pivot getControlledPivot() {
 		return controlledByCrank;
+	}
+
+	public GameObject getCloud(){
+		return cloud;
 	}
 }
