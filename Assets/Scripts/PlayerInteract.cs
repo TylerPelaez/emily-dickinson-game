@@ -41,11 +41,8 @@ public class PlayerInteract : MonoBehaviour {
         {
             Vector3 posVec = new Vector3(cameraTransform.position.x + (cameraTransform.forward.x * HOLD_DISTANCE), cameraTransform.position.y + (cameraTransform.forward.y * HOLD_DISTANCE), cameraTransform.position.z + (cameraTransform.forward.z * HOLD_DISTANCE));
             //heldObject.transform.position = posVec;
-			Debug.Log(posVec);
-			Debug.Log ("cameraTransform:" + cameraTransform.position);
             float distMod = Vector3.Distance(heldObject.transform.position, posVec);
             heldObjectBody.velocity = (posVec - heldObject.transform.position).normalized * objectSpeed * Time.deltaTime * distMod;
-			Debug.Log ("velocity:" + heldObjectBody.velocity);
             heldObject.transform.rotation = cameraTransform.rotation;
         }
 	}
