@@ -60,12 +60,16 @@ public class PlayerCam : MonoBehaviour
 
 	// Sun revolution
 	const float SUN_REVOLVE_SPEED = 60f;
-	Pivot currentCrankPivot;
+	Playback sun;
+	Playback clouds;
+	Playback gradient;
+	GameObject stars;
+
+
 
 	//Cloud objects
-	const float CLOUD_ALPHA_SPEED = 6f;
-	GameObject currentCloud;
-	Renderer cloudRender;
+	const float CLOUD_ALPHA_SPEED = 60f;
+	Pivot currentCrankPivot;
 
 	private CURRENT_INPUT inputState;
 	private float deltaX;
@@ -128,12 +132,12 @@ public class PlayerCam : MonoBehaviour
 
 	public void beginLerpToLockPos(CrankTransformManager snappedCrankTransformManager) {
 		currentCrankPivot = snappedCrankTransformManager.getControlledPivot ();
-		currentCloud = snappedCrankTransformManager.getCloud();
-		if(currentCloud != null){
-			cloudRender = currentCloud.GetComponent<Renderer>();
-		}
 
 
+		sun = snappedCrankTransformManager.getSun ();
+		clouds = snappedCrankTransformManager.getClouds ();
+		gradient = snappedCrankTransformManager.getGradient ();
+		stars = snappedCrankTransformManager.getStars ();
 		playerMove.lockMovement ();
 
 		gameObject.GetComponent<Rigidbody> ().isKinematic = true;
@@ -200,28 +204,28 @@ public class PlayerCam : MonoBehaviour
     private void crankCrank() //potentially move this into PlayerInteract once it's working
     {
 		if (inputState == CURRENT_INPUT.CANCEL_INTERACT) {
-			oldest = new Vector2(float.NaN, float.NaN);
-			middle = new Vector2(float.NaN, float.NaN);
-			newest = new Vector2(float.NaN, float.NaN);
+			oldest = new Vector2 (float.NaN, float.NaN);
+			middle = new Vector2 (float.NaN, float.NaN);
+			newest = new Vector2 (float.NaN, float.NaN);
 			consistentTurnCount = 0;
 			beginLerpToOldPos ();
 		} else if (inputState == CURRENT_INPUT.INTERACT_DOWN) {
 			newest = new Vector2 (0f, 0f);
-			oldest = new Vector2(float.NaN, float.NaN);
-			middle = new Vector2(float.NaN, float.NaN);
+			oldest = new Vector2 (float.NaN, float.NaN);
+			middle = new Vector2 (float.NaN, float.NaN);
 			Debug.Log ("Press Interacty");
 			consistentTurnCount = 0;
 		} else if (inputState == CURRENT_INPUT.INTERACT_UP) {
-			oldest = new Vector2(float.NaN, float.NaN);
-			middle = new Vector2(float.NaN, float.NaN);
-			newest = new Vector2(float.NaN, float.NaN);
+			oldest = new Vector2 (float.NaN, float.NaN);
+			middle = new Vector2 (float.NaN, float.NaN);
+			newest = new Vector2 (float.NaN, float.NaN);
 			consistentTurnCount = 0;
 		} else if (inputState == CURRENT_INPUT.INTERACT_HELD) {
 			// Detection of a circle gesture:
 			// As seen on https://answers.unity.com/questions/219958/touch-gestures-recognising-a-circle.html
 			// Without the power of math this would be very silly to do
-			oldest = (!float.IsNaN(middle.x)) ? new Vector2 (middle.x, middle.y) : new Vector2(float.NaN, float.NaN);
-			middle = new Vector2(newest.x, newest.y);
+			oldest = (!float.IsNaN (middle.x)) ? new Vector2 (middle.x, middle.y) : new Vector2 (float.NaN, float.NaN);
+			middle = new Vector2 (newest.x, newest.y);
 			newest = new Vector2 (newest.x + deltaX, newest.y + deltaY);
 
 
@@ -232,7 +236,7 @@ public class PlayerCam : MonoBehaviour
 			}
 
 
-			if (float.IsNaN(oldest.x)) {
+			if (float.IsNaN (oldest.x)) {
 				return;
 			}
 
@@ -270,21 +274,44 @@ public class PlayerCam : MonoBehaviour
 			}
 
 			if (consistentTurnCount > CIRCLE_TURN_CONSISTENCY_THRESHOLD) {
-				if(currentCrankPivot != null) {
+				if (sun != null) {
+					sun.Pause (false);
+					clouds.Pause (false);
+					gradient.Pause (false);
 
-					currentCrankPivot.Rotate(-Time.fixedDeltaTime * SUN_REVOLVE_SPEED);
-				}else if (currentCloud != null){
+					sun.reverse = true;
+					clouds.reverse = true;
+					gradient.reverse = true;
+				} else if (currentCrankPivot != null){
 					//dissappears
-					cloudRender.material.SetColor("_TintColor", new Color(255f, 255f, 255f, 1f));
+					//cloudRender.material.SetColor("_TintColor", new Color(255f, 255f, 255f, 1f));
+					currentCrankPivot.Rotate(Time.fixedDeltaTime * CLOUD_ALPHA_SPEED);
 				}
 			} else if (consistentTurnCount < -CIRCLE_TURN_CONSISTENCY_THRESHOLD) {
-				if(currentCrankPivot != null) {
-					//reappears
-					currentCrankPivot.Rotate(Time.fixedDeltaTime * SUN_REVOLVE_SPEED);
-				}else if (currentCloud != null){
+				if (sun != null) {
+					sun.Pause (false);
+					clouds.Pause (false);
+					gradient.Pause (false);
 
-					cloudRender.material.SetColor("_TintColor", new Color(255f, 255f, 255f, 0f));
+					sun.reverse = false;
+					clouds.reverse = false;
+					gradient.reverse = false;
+				} else if (currentCrankPivot != null) {
+					currentCrankPivot.Rotate(-Time.fixedDeltaTime * CLOUD_ALPHA_SPEED);
+					//cloudRender.material.SetColor ("_TintColor", new Color (255f, 255f, 255f, 0f));
 				}
+			} else {
+				if (sun != null) {
+					sun.Pause (true);
+					clouds.Pause (true);
+					gradient.Pause (true);
+				}
+			}
+		} else {
+			if (sun != null) {
+				sun.Pause (true);
+				clouds.Pause (true);
+				gradient.Pause (true);
 			}
 		}
     }

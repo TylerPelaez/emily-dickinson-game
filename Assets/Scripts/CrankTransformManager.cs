@@ -8,6 +8,11 @@ public class CrankTransformManager : MonoBehaviour {
 	Pivot controlledByCrank;
 	public GameObject cloud;
 
+	public Playback sun;
+	public Playback clouds;
+	public Playback gradient;
+	public GameObject stars;
+
 	// Use this for initialization
 	void Start () {
 		Transform[] transforms = gameObject.GetComponentsInChildren<Transform> ();
@@ -16,10 +21,8 @@ public class CrankTransformManager : MonoBehaviour {
 				cameraLerpTransform = t;
 			}
 		}
-		/*something that will deteremine what is "being cranked"*/
-		if(cloud == null){
-			controlledByCrank = gameObject.GetComponentInChildren<Pivot> ();
-		}
+		controlledByCrank = gameObject.GetComponentInChildren<Pivot> ();
+
 	}
 	
 	public Transform getCameraLerpTransform () {
@@ -29,11 +32,25 @@ public class CrankTransformManager : MonoBehaviour {
 		return cameraLerpTransform;
 	}
 
+	public Playback getSun() {
+		return sun;
+	}
+
 	public Pivot getControlledPivot() {
 		return controlledByCrank;
 	}
-
-	public GameObject getCloud(){
-		return cloud;
+		
+	public Playback getClouds() {
+		return clouds;
 	}
+
+	public Playback getGradient() {
+		return gradient;
+	}
+
+	public GameObject getStars() {
+		return stars;
+	}
+
+
 }
