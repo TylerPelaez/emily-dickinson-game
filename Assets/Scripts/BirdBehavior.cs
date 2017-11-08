@@ -47,4 +47,8 @@ public class BirdBehavior : MonoBehaviour {
 	public bool getStay() {
 		return stay;
 	}
+
+	public void Deactivate() {		
+		gameObject.SetActive (false);
+	}
 }
