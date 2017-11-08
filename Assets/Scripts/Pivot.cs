@@ -13,11 +13,8 @@ public class Pivot : MonoBehaviour {
 	}
 
 	public void Rotate(float amt) {
-		if(transform.CompareTag("cloud")){
-			transform.RotateAround(transform.position, transform.up, amt);
-		}else if(transform.CompareTag("cup")){
-			transform.RotateAround(transform.position, transform.up, amt);
-		}
+		transform.RotateAround(transform.position, transform.up, amt);
+		
 
 	}
 }
