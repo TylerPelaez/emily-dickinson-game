@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: a29a60450234742a0bbd991a56269215
-timeCreated: 1510112214
-licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -50,7 +48,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: sign wood
-    second: {fileID: 2100000, guid: 9e2390eaced3c4491a6e93c49cee929b, type: 2}
+    second: {fileID: 2100000, guid: acb3a24229fa0a24199ac9a7b6783026, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

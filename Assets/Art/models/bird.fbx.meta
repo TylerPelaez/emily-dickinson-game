@@ -1,0 +1,303 @@
+fileFormatVersion: 2
+guid: 950355420f7e9c44387678572eac4a8f
+timeCreated: 1510111679
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: bird
+    100004: Cinema4D_Editor
+    100006: Cube
+    100008: Cylinder
+    100010: Cylinder_1
+    100012: Extrude__1
+    100014: Extrude__3
+    100016: Extrude__5
+    100018: Extrude__7
+    100020: Extrude__9
+    100022: Extrude___10
+    100024: Extrude___2
+    100026: Extrude___4
+    100028: Extrude___6
+    100030: Extrude___8
+    100032: Joint_1
+    100034: Joint_2
+    100036: Joint_3
+    100038: Joint_4
+    100040: NitroBake_1
+    100042: NitroBake_1_1
+    100044: NitroBake_2
+    100046: NitroBake_2_2
+    100048: notes
+    100050: Root
+    100052: Sphere
+    100054: Sphere_1
+    100056: Subdivision_Surface_1
+    100058: Subdivision_Surface_1_2
+    400000: //RootNode
+    400002: bird
+    400004: Cinema4D_Editor
+    400006: Cube
+    400008: Cylinder
+    400010: Cylinder_1
+    400012: Extrude__1
+    400014: Extrude__3
+    400016: Extrude__5
+    400018: Extrude__7
+    400020: Extrude__9
+    400022: Extrude___10
+    400024: Extrude___2
+    400026: Extrude___4
+    400028: Extrude___6
+    400030: Extrude___8
+    400032: Joint_1
+    400034: Joint_2
+    400036: Joint_3
+    400038: Joint_4
+    400040: NitroBake_1
+    400042: NitroBake_1_1
+    400044: NitroBake_2
+    400046: NitroBake_2_2
+    400048: notes
+    400050: Root
+    400052: Sphere
+    400054: Sphere_1
+    400056: Subdivision_Surface_1
+    400058: Subdivision_Surface_1_2
+    2300000: Cylinder
+    2300002: Cylinder_1
+    2300004: Extrude__1
+    2300006: Extrude__3
+    2300008: Extrude__5
+    2300010: Extrude__7
+    2300012: Extrude__9
+    2300014: Extrude___10
+    2300016: Extrude___2
+    2300018: Extrude___4
+    2300020: Extrude___6
+    2300022: Extrude___8
+    2300024: Sphere
+    2300026: Sphere_1
+    2300028: Subdivision_Surface_1
+    2300030: Subdivision_Surface_1_2
+    3300000: Cylinder
+    3300002: Cylinder_1
+    3300004: Extrude__1
+    3300006: Extrude__3
+    3300008: Extrude__5
+    3300010: Extrude__7
+    3300012: Extrude__9
+    3300014: Extrude___10
+    3300016: Extrude___2
+    3300018: Extrude___4
+    3300020: Extrude___6
+    3300022: Extrude___8
+    3300024: Sphere
+    3300026: Sphere_1
+    3300028: Subdivision_Surface_1
+    3300030: Subdivision_Surface_1_2
+    4300000: Cube
+    4300002: Sphere
+    4300004: Sphere_1
+    4300006: Subdivision_Surface_1
+    4300008: Subdivision_Surface_1_2
+    4300010: Cylinder
+    4300012: Cylinder_1
+    4300014: Extrude__1
+    4300016: Extrude___2
+    4300018: Extrude__3
+    4300020: Extrude___4
+    4300022: Extrude__5
+    4300024: Extrude___6
+    4300026: Extrude__7
+    4300028: Extrude___8
+    4300030: Extrude__9
+    4300032: Extrude___10
+    7400000: C4D Animation Take
+    7400002: C4D Animation Take (1)
+    7400004: C4D Animation Take (2)
+    9500000: //RootNode
+    13700000: Cube
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat
+    second: {fileID: 2100000, guid: d993f8e724c1dad47b52069e549de39e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat.1
+    second: {fileID: 2100000, guid: f7ed227e35128cf40903ff384e7a6934, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat.2
+    second: {fileID: 2100000, guid: dd2e26f31a981a342bcd6c7835daa6b4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: red bird
+    second: {fileID: 2100000, guid: dc21449724c5f994eafc5cf72cd224af, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: C4D Animation Take
+      takeName: C4D Animation Take
+      firstFrame: 0
+      lastFrame: 31
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: C4D Animation Take (1)
+      takeName: C4D Animation Take
+      firstFrame: 31
+      lastFrame: 112
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: C4D Animation Take (2)
+      takeName: C4D Animation Take
+      firstFrame: 112
+      lastFrame: 241
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
