@@ -34,7 +34,7 @@ public class PlayerInteract : MonoBehaviour {
 		pickupTextObject = GameObject.Find ("PickupText").GetComponent<Text>();
 	}
 
-    void Update ()
+    void FixedUpdate ()
     {
         centerObjectInCamera();
     }

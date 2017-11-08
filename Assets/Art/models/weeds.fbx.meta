@@ -1,30 +1,30 @@
 fileFormatVersion: 2
-guid: 33cf8173407492e4781749d11cb83ff0
-timeCreated: 1510111889
+guid: 995a484960ac52f4ca5553fa1312bb7e
+timeCreated: 1510141946
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: Cinema4D_Editor
-    100002: //RootNode
-    100004: mug
+    100002: Random
+    100004: //RootNode
     400000: Cinema4D_Editor
-    400002: //RootNode
-    400004: mug
-    2300000: mug
-    3300000: mug
-    4300000: mug
+    400002: Random
+    400004: //RootNode
+    2300000: Random
+    3300000: Random
+    4300000: Random
     9500000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: No Name
-    second: {fileID: 2100000, guid: d889d117d9e282a49bcd16003bcb20aa, type: 2}
+      name: general weeds
+    second: {fileID: 2100000, guid: 6ee6f22a8d32f4445883e8f42f29117a, type: 2}
   materials:
     importMaterials: 1
-    materialName: 1
-    materialSearch: 2
+    materialName: 0
+    materialSearch: 1
     materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
