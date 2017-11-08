@@ -15,6 +15,7 @@ public class Level_1_GM : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		check_turning();
+		check_state();
 	}
 
 	void check_turning(){
@@ -23,6 +24,12 @@ public class Level_1_GM : MonoBehaviour {
 			turning = true;
 		}else{
 			turning = false;
+		}
+	}
+
+	void check_state(){
+		if(turning && sun.progress > 0.20f && sun.progress < 0.30f){
+			Debug.Log("dank sunset in a cup");
 		}
 	}
 }
