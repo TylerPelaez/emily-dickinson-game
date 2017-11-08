@@ -62,7 +62,7 @@ public class PlayerCam : MonoBehaviour
 	const float SUN_REVOLVE_SPEED = 60f;
 	Playback sun;
 	Playback clouds;
-	Playback gradient;
+	Playback effects;
 	GameObject stars;
 
 
@@ -136,7 +136,7 @@ public class PlayerCam : MonoBehaviour
 
 		sun = snappedCrankTransformManager.getSun ();
 		clouds = snappedCrankTransformManager.getClouds ();
-		gradient = snappedCrankTransformManager.getGradient ();
+		effects = snappedCrankTransformManager.getEffects ();
 		stars = snappedCrankTransformManager.getStars ();
 		playerMove.lockMovement ();
 
@@ -277,43 +277,44 @@ public class PlayerCam : MonoBehaviour
 				if (sun != null) {
 					sun.Pause (false);
 					clouds.Pause (false);
-					gradient.Pause (false);
+					effects.Pause (false);
 
 					sun.reverse = true;
 					clouds.reverse = true;
-					gradient.reverse = true;
-				} else if (currentCrankPivot != null){
-					//dissappears
-					//cloudRender.material.SetColor("_TintColor", new Color(255f, 255f, 255f, 1f));
-					currentCrankPivot.Rotate(Time.fixedDeltaTime * CLOUD_ALPHA_SPEED);
-					Debug.Log(currentCrankPivot.transform.eulerAngles.y);
+					effects.reverse = true;
+
+					if (currentCrankPivot != null){
+						//dissappears
+						//cloudRender.material.SetColor("_TintColor", new Color(255f, 255f, 255f, 1f));
+						currentCrankPivot.Rotate(Time.fixedDeltaTime * CLOUD_ALPHA_SPEED);
+					}
 				}
 			} else if (consistentTurnCount < -CIRCLE_TURN_CONSISTENCY_THRESHOLD) {
 				if (sun != null) {
 					sun.Pause (false);
 					clouds.Pause (false);
-					gradient.Pause (false);
+					effects.Pause (false);
 
 					sun.reverse = false;
 					clouds.reverse = false;
-					gradient.reverse = false;
-				} else if (currentCrankPivot != null) {
-					currentCrankPivot.Rotate(-Time.fixedDeltaTime * CLOUD_ALPHA_SPEED);
-					Debug.Log(currentCrankPivot.transform.eulerAngles.y);
-					//cloudRender.material.SetColor ("_TintColor", new Color (255f, 255f, 255f, 0f));
+					effects.reverse = false;
+					if (currentCrankPivot != null) {
+						currentCrankPivot.Rotate(-Time.fixedDeltaTime * CLOUD_ALPHA_SPEED);
+						//cloudRender.material.SetColor ("_TintColor", new Color (255f, 255f, 255f, 0f));
+					}
 				}
 			} else {
 				if (sun != null) {
 					sun.Pause (true);
 					clouds.Pause (true);
-					gradient.Pause (true);
+					effects.Pause (true);
 				}
 			}
 		} else {
 			if (sun != null) {
 				sun.Pause (true);
 				clouds.Pause (true);
-				gradient.Pause (true);
+				effects.Pause (true);
 			}
 		}
     }
