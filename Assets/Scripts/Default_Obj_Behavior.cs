@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Default_Obj_Behavior : MonoBehaviour {
-	GameObject snap_obj;
+	private GameObject snap_obj;
 	public bool held {get; set;}
 
 	// Use this for initialization
@@ -16,18 +16,22 @@ public class Default_Obj_Behavior : MonoBehaviour {
 	void Update () {
 	}
 
-	public void SnapTo(){
+	public CrankTransformManager SnapTo(){
+		// Returns the CrankTransformManager of the object this object snapped to
 		if(snap_obj != null){
 			transform.position = snap_obj.transform.position;
+			return snap_obj.GetComponent<CrankTransformManager> ();
 		}else{
 			transform.position = transform.position;
+			return null;
 		}
 	}
-
+	
 	void OnTriggerEnter(Collider col){
 		Debug.Log("entered");
 		if(col.gameObject.tag == gameObject.tag){
 			snap_obj = col.transform.gameObject;
+
 		}else{
 			snap_obj = null;
 			Debug.Log("need correct obj");
