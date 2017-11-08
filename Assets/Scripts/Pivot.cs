@@ -13,6 +13,6 @@ public class Pivot : MonoBehaviour {
 	}
 
 	public void Rotate(float amt) {
-		transform.RotateAround(transform.position, transform.forward, amt);
+		transform.RotateAround(transform.position, transform.up, amt);
 	}
 }

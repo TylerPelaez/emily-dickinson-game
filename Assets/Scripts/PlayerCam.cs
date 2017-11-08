@@ -65,12 +65,11 @@ public class PlayerCam : MonoBehaviour
 	Playback gradient;
 	GameObject stars;
 
-	Pivot currentCrankPivot;
+
 
 	//Cloud objects
-	const float CLOUD_ALPHA_SPEED = 6f;
-	GameObject currentCloud;
-	Renderer cloudRender;
+	const float CLOUD_ALPHA_SPEED = 60f;
+	Pivot currentCrankPivot;
 
 	private CURRENT_INPUT inputState;
 	private float deltaX;
@@ -133,10 +132,6 @@ public class PlayerCam : MonoBehaviour
 
 	public void beginLerpToLockPos(CrankTransformManager snappedCrankTransformManager) {
 		currentCrankPivot = snappedCrankTransformManager.getControlledPivot ();
-		currentCloud = snappedCrankTransformManager.getCloud();
-		if(currentCloud != null){
-			cloudRender = currentCloud.GetComponent<Renderer>();
-		}
 
 
 		sun = snappedCrankTransformManager.getSun ();
@@ -287,9 +282,10 @@ public class PlayerCam : MonoBehaviour
 					sun.reverse = true;
 					clouds.reverse = true;
 					gradient.reverse = true;
-				} else if (currentCloud != null){
+				} else if (currentCrankPivot != null){
 					//dissappears
-					cloudRender.material.SetColor("_TintColor", new Color(255f, 255f, 255f, 1f));
+					//cloudRender.material.SetColor("_TintColor", new Color(255f, 255f, 255f, 1f));
+					currentCrankPivot.Rotate(Time.fixedDeltaTime * CLOUD_ALPHA_SPEED);
 				}
 			} else if (consistentTurnCount < -CIRCLE_TURN_CONSISTENCY_THRESHOLD) {
 				if (sun != null) {
@@ -300,9 +296,9 @@ public class PlayerCam : MonoBehaviour
 					sun.reverse = false;
 					clouds.reverse = false;
 					gradient.reverse = false;
-				} else if (currentCloud != null) {
-
-					cloudRender.material.SetColor ("_TintColor", new Color (255f, 255f, 255f, 0f));
+				} else if (currentCrankPivot != null) {
+					currentCrankPivot.Rotate(-Time.fixedDeltaTime * CLOUD_ALPHA_SPEED);
+					//cloudRender.material.SetColor ("_TintColor", new Color (255f, 255f, 255f, 0f));
 				}
 			} else {
 				if (sun != null) {

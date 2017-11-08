@@ -21,10 +21,8 @@ public class CrankTransformManager : MonoBehaviour {
 				cameraLerpTransform = t;
 			}
 		}
-		/*something that will deteremine what is "being cranked"*/
-		if(cloud == null){
-			controlledByCrank = gameObject.GetComponentInChildren<Pivot> ();
-		}
+		controlledByCrank = gameObject.GetComponentInChildren<Pivot> ();
+
 	}
 	
 	public Transform getCameraLerpTransform () {
@@ -41,10 +39,7 @@ public class CrankTransformManager : MonoBehaviour {
 	public Pivot getControlledPivot() {
 		return controlledByCrank;
 	}
-
-	public GameObject getCloud(){
-		return cloud;
-	}
+		
 	public Playback getClouds() {
 		return clouds;
 	}
