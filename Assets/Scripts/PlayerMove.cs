@@ -71,10 +71,11 @@ public class PlayerMove : MonoBehaviour
         {
             zMove = Mathf.Lerp(zMove, 0f, .5f);
         }
-        if (Mathf.Abs(CrossPlatformInputManager.GetAxis("Horizontal")) == 1 && Mathf.Abs(CrossPlatformInputManager.GetAxis("Vertical")) == 1)
-            gameObject.transform.Translate(xMove / Mathf.Sqrt(Mathf.Sqrt(2)), 0, zMove / Mathf.Sqrt(Mathf.Sqrt(2)));
-        else
-            gameObject.transform.Translate(xMove, 0, zMove);
+		if (Mathf.Abs(CrossPlatformInputManager.GetAxis("Horizontal")) == 1 && Mathf.Abs(CrossPlatformInputManager.GetAxis("Vertical")) == 1){
+			xMove = xMove / Mathf.Sqrt(Mathf.Sqrt(2));
+			zMove = zMove / Mathf.Sqrt(Mathf.Sqrt(2));
+		}
+		gameObject.transform.Translate(xMove, 0, zMove);
     }
 
 	public void lockMovement() {

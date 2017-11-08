@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Pivot : MonoBehaviour {
 
+
 	// Use this for initialization
 	void Start () {
 	}
@@ -13,8 +14,7 @@ public class Pivot : MonoBehaviour {
 	}
 
 	public void Rotate(float amt) {
-		transform.RotateAround(transform.position, transform.up, amt);
 		
-
+		transform.RotateAround(transform.position, transform.up, amt);
 	}
 }
