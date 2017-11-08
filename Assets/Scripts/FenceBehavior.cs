@@ -43,6 +43,8 @@ public class FenceBehavior : MonoBehaviour {
 
 	private int current_range;
 
+	private int[] win_rows = new int[] { 1, 1, 1, 1, 1};
+
 
 	// Use this for initialization
 	void Start () {
@@ -78,13 +80,24 @@ public class FenceBehavior : MonoBehaviour {
 					current_range = i;
 					Debug.Log (i);
 
+					bool win = true;
 					for (int j = 0; j < 5; j++) {
 						if (current_birds [j] == null) {
 							birds [indices [current_range, j]].SetActive (true);
 							birds [indices [current_range, j]].GetComponent<BirdBehavior> ().setToFencePosition ();
 							current_birds [j] = birds [indices [current_range, j]];
+
+						}
+
+						if (current_birds [j].GetComponent<BirdBehavior> ().getRow () != win_rows [j]) {
+							win = false;
 						}
 					}
+
+					if (win) {
+						Debug.Log ("A Winer is You!");
+					}
+
 					break;
 				}
 			}
