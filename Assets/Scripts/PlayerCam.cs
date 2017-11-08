@@ -272,7 +272,7 @@ public class PlayerCam : MonoBehaviour
 			if (consistentTurnCount > CIRCLE_TURN_CONSISTENCY_THRESHOLD) {
 				if(currentCrankPivot != null) {
 
-					currentCrankPivot.Rotate(Time.fixedDeltaTime * SUN_REVOLVE_SPEED);
+					currentCrankPivot.Rotate(-Time.fixedDeltaTime * SUN_REVOLVE_SPEED);
 				}else if (currentCloud != null){
 					//dissappears
 					cloudRender.material.SetColor("_TintColor", new Color(255f, 255f, 255f, 1f));
@@ -280,7 +280,7 @@ public class PlayerCam : MonoBehaviour
 			} else if (consistentTurnCount < -CIRCLE_TURN_CONSISTENCY_THRESHOLD) {
 				if(currentCrankPivot != null) {
 					//reappears
-					currentCrankPivot.Rotate(-Time.fixedDeltaTime * SUN_REVOLVE_SPEED);
+					currentCrankPivot.Rotate(Time.fixedDeltaTime * SUN_REVOLVE_SPEED);
 				}else if (currentCloud != null){
 
 					cloudRender.material.SetColor("_TintColor", new Color(255f, 255f, 255f, 0f));

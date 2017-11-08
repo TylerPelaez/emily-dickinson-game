@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - cup
   - cloud
+  - cup
   layers:
   - Default
   - TransparentFX
@@ -15,10 +15,10 @@ TagManager:
   - UI
   - 
   - 
-  - Player
-  - Terrain
-  - Pickupable
-  - Crank
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
