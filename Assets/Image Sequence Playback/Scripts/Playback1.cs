@@ -120,10 +120,10 @@ public class Playback1 : MonoBehaviour
 
     [SerializeField]
     //float time = 0;
-    float frame = 0;
+    float frame = 180;
     //int lastIndex = 0;
     //int framesPlayed = 0;
-    float delta = 0;
+    float delta = 9;
     void Update()
     {
         if (isLoadingAsync)
