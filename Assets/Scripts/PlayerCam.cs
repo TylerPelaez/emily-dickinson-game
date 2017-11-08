@@ -261,11 +261,11 @@ public class PlayerCam : MonoBehaviour
 
 			if (consistentTurnCount > CIRCLE_TURN_CONSISTENCY_THRESHOLD) {
 				if(currentCrankPivot != null) {
-					currentCrankPivot.Rotate(Time.fixedDeltaTime * SUN_REVOLVE_SPEED);
+					currentCrankPivot.Rotate(-Time.fixedDeltaTime * SUN_REVOLVE_SPEED);
 				}
 			} else if (consistentTurnCount < -CIRCLE_TURN_CONSISTENCY_THRESHOLD) {
 				if(currentCrankPivot != null) {
-					currentCrankPivot.Rotate(-Time.fixedDeltaTime * SUN_REVOLVE_SPEED);
+					currentCrankPivot.Rotate(Time.fixedDeltaTime * SUN_REVOLVE_SPEED);
 				}
 			}
 		}
