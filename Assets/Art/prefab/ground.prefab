@@ -36,6 +36,7 @@ GameObject:
   - component: {fileID: 4470413744796436}
   - component: {fileID: 33115860289756612}
   - component: {fileID: 23693235646962544}
+  - component: {fileID: 64492820737099258}
   m_Layer: 0
   m_Name: Quad
   m_TagString: Untagged
@@ -183,3 +184,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1487499485696280}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!64 &64492820737099258
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1332121018579290}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}

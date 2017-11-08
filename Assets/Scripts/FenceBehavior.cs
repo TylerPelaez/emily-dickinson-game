@@ -35,6 +35,8 @@ public class FenceBehavior : MonoBehaviour {
 	public Playback sun;
 	public GameObject birdPrefab;
 
+	public GameObject trees;
+
 	private RotationRangeObject[] ranges;
 	private GameObject[] birds;
 
@@ -94,7 +96,8 @@ public class FenceBehavior : MonoBehaviour {
 					}
 
 					if (win) {
-						Debug.Log ("A Winer is You!");
+						trees.GetComponent<Animator> ().SetBool ("finished", true);
+						trees.GetComponentInChildren<treefall> ().gameObject.SetActive (false);
 					}
 
 					break;
