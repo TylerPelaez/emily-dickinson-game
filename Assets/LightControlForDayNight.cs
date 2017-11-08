@@ -12,6 +12,8 @@ public class LightControlForDayNight : MonoBehaviour {
     // Use this for initialization
     void Start () {
 		toggle = true;
+		DynamicGI.UpdateEnvironment();
+
 	}
 	
 	// Update is called once per frame
