@@ -286,6 +286,7 @@ public class PlayerCam : MonoBehaviour
 					//dissappears
 					//cloudRender.material.SetColor("_TintColor", new Color(255f, 255f, 255f, 1f));
 					currentCrankPivot.Rotate(Time.fixedDeltaTime * CLOUD_ALPHA_SPEED);
+					Debug.Log(currentCrankPivot.transform.eulerAngles.y);
 				}
 			} else if (consistentTurnCount < -CIRCLE_TURN_CONSISTENCY_THRESHOLD) {
 				if (sun != null) {
@@ -298,6 +299,7 @@ public class PlayerCam : MonoBehaviour
 					gradient.reverse = false;
 				} else if (currentCrankPivot != null) {
 					currentCrankPivot.Rotate(-Time.fixedDeltaTime * CLOUD_ALPHA_SPEED);
+					Debug.Log(currentCrankPivot.transform.eulerAngles.y);
 					//cloudRender.material.SetColor ("_TintColor", new Color (255f, 255f, 255f, 0f));
 				}
 			} else {
