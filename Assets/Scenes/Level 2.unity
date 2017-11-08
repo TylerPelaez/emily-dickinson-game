@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: e57fcae8a2d3a5b48978e2572b6658b2, type: 2}
+  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.70724446, g: 0.80129504, b: 0.8218779, a: 1}
+  m_IndirectSpecularColor: {r: 0.44760364, g: 0.4975707, b: 0.5753562, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -338,7 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 715548c7e260e4274b3dc3151c228dff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sunPivotObject: {fileID: 1225555763}
+  sun: {fileID: 1698239592}
   birdPrefab: {fileID: 1306011260394834, guid: 4eda11aba434549ff82de2cfb17ba2dd, type: 2}
 --- !u!1 &467408379
 GameObject:
@@ -674,7 +674,7 @@ Prefab:
     - target: {fileID: 224123321255226580, guid: da207cbd25241494790d307fa30c2918,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 302.5
+      value: 344
       objectReference: {fileID: 0}
     - target: {fileID: 224123321255226580, guid: da207cbd25241494790d307fa30c2918,
         type: 2}
