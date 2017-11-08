@@ -1244,6 +1244,77 @@ ModelImporter:
     102472: Null_98_2
     102474: Null_99
     102476: //RootNode
+    102478: Group_Fracture_68
+    102480: Merge__1
+    102482: Merge__10
+    102484: Merge__11
+    102486: Merge__12
+    102488: Merge__13
+    102490: Merge__14
+    102492: Merge__15
+    102494: Merge__16
+    102496: Merge__17
+    102498: Merge__18
+    102500: Merge__19
+    102502: Merge__2
+    102504: Merge__20
+    102506: Merge__21
+    102508: Merge__22
+    102510: Merge__23
+    102512: Merge__24
+    102514: Merge__25
+    102516: Merge__26
+    102518: Merge__27
+    102520: Merge__28
+    102522: Merge__29
+    102524: Merge__3
+    102526: Merge__30
+    102528: Merge__31
+    102530: Merge__32
+    102532: Merge__33
+    102534: Merge__34
+    102536: Merge__35
+    102538: Merge__36
+    102540: Merge__37
+    102542: Merge__38
+    102544: Merge__39
+    102546: Merge__4
+    102548: Merge__40
+    102550: Merge__41
+    102552: Merge__42
+    102554: Merge__43
+    102556: Merge__44
+    102558: Merge__45
+    102560: Merge__46
+    102562: Merge__47
+    102564: Merge__48
+    102566: Merge__49
+    102568: Merge__5
+    102570: Merge__50
+    102572: Merge__51
+    102574: Merge__52
+    102576: Merge__53
+    102578: Merge__54
+    102580: Merge__55
+    102582: Merge__56
+    102584: Merge__57
+    102586: Merge__58
+    102588: Merge__59
+    102590: Merge__6
+    102592: Merge__60
+    102594: Merge__61
+    102596: Merge__62
+    102598: Merge__63
+    102600: Merge__64
+    102602: Merge__65
+    102604: Merge__66
+    102606: Merge__67
+    102608: Merge__68
+    102610: Merge__7
+    102612: Merge__8
+    102614: Merge__9
+    102616: tree_line
+    102618: trees
     400000: Cinema4D_Editor
     400002: Cone
     400004: Cone_1
@@ -2483,6 +2554,77 @@ ModelImporter:
     402472: Null_98_2
     402474: Null_99
     402476: //RootNode
+    402478: Group_Fracture_68
+    402480: Merge__1
+    402482: Merge__10
+    402484: Merge__11
+    402486: Merge__12
+    402488: Merge__13
+    402490: Merge__14
+    402492: Merge__15
+    402494: Merge__16
+    402496: Merge__17
+    402498: Merge__18
+    402500: Merge__19
+    402502: Merge__2
+    402504: Merge__20
+    402506: Merge__21
+    402508: Merge__22
+    402510: Merge__23
+    402512: Merge__24
+    402514: Merge__25
+    402516: Merge__26
+    402518: Merge__27
+    402520: Merge__28
+    402522: Merge__29
+    402524: Merge__3
+    402526: Merge__30
+    402528: Merge__31
+    402530: Merge__32
+    402532: Merge__33
+    402534: Merge__34
+    402536: Merge__35
+    402538: Merge__36
+    402540: Merge__37
+    402542: Merge__38
+    402544: Merge__39
+    402546: Merge__4
+    402548: Merge__40
+    402550: Merge__41
+    402552: Merge__42
+    402554: Merge__43
+    402556: Merge__44
+    402558: Merge__45
+    402560: Merge__46
+    402562: Merge__47
+    402564: Merge__48
+    402566: Merge__49
+    402568: Merge__5
+    402570: Merge__50
+    402572: Merge__51
+    402574: Merge__52
+    402576: Merge__53
+    402578: Merge__54
+    402580: Merge__55
+    402582: Merge__56
+    402584: Merge__57
+    402586: Merge__58
+    402588: Merge__59
+    402590: Merge__6
+    402592: Merge__60
+    402594: Merge__61
+    402596: Merge__62
+    402598: Merge__63
+    402600: Merge__64
+    402602: Merge__65
+    402604: Merge__66
+    402606: Merge__67
+    402608: Merge__68
+    402610: Merge__7
+    402612: Merge__8
+    402614: Merge__9
+    402616: tree_line
+    402618: trees
     2300000: Cone
     2300002: Cone_1
     2300004: Cone_10
@@ -3307,6 +3449,75 @@ ModelImporter:
     2301642: Cylinder_97
     2301644: Cylinder_98
     2301646: Cylinder_99
+    2301648: Merge__1
+    2301650: Merge__10
+    2301652: Merge__11
+    2301654: Merge__12
+    2301656: Merge__13
+    2301658: Merge__14
+    2301660: Merge__15
+    2301662: Merge__16
+    2301664: Merge__17
+    2301666: Merge__18
+    2301668: Merge__19
+    2301670: Merge__2
+    2301672: Merge__20
+    2301674: Merge__21
+    2301676: Merge__22
+    2301678: Merge__23
+    2301680: Merge__24
+    2301682: Merge__25
+    2301684: Merge__26
+    2301686: Merge__27
+    2301688: Merge__28
+    2301690: Merge__29
+    2301692: Merge__3
+    2301694: Merge__30
+    2301696: Merge__31
+    2301698: Merge__32
+    2301700: Merge__33
+    2301702: Merge__34
+    2301704: Merge__35
+    2301706: Merge__36
+    2301708: Merge__37
+    2301710: Merge__38
+    2301712: Merge__39
+    2301714: Merge__4
+    2301716: Merge__40
+    2301718: Merge__41
+    2301720: Merge__42
+    2301722: Merge__43
+    2301724: Merge__44
+    2301726: Merge__45
+    2301728: Merge__46
+    2301730: Merge__47
+    2301732: Merge__48
+    2301734: Merge__49
+    2301736: Merge__5
+    2301738: Merge__50
+    2301740: Merge__51
+    2301742: Merge__52
+    2301744: Merge__53
+    2301746: Merge__54
+    2301748: Merge__55
+    2301750: Merge__56
+    2301752: Merge__57
+    2301754: Merge__58
+    2301756: Merge__59
+    2301758: Merge__6
+    2301760: Merge__60
+    2301762: Merge__61
+    2301764: Merge__62
+    2301766: Merge__63
+    2301768: Merge__64
+    2301770: Merge__65
+    2301772: Merge__66
+    2301774: Merge__67
+    2301776: Merge__68
+    2301778: Merge__7
+    2301780: Merge__8
+    2301782: Merge__9
+    2301784: tree_line
     3300000: Cone
     3300002: Cone_1
     3300004: Cone_10
@@ -4131,6 +4342,75 @@ ModelImporter:
     3301642: Cylinder_97
     3301644: Cylinder_98
     3301646: Cylinder_99
+    3301648: Merge__1
+    3301650: Merge__10
+    3301652: Merge__11
+    3301654: Merge__12
+    3301656: Merge__13
+    3301658: Merge__14
+    3301660: Merge__15
+    3301662: Merge__16
+    3301664: Merge__17
+    3301666: Merge__18
+    3301668: Merge__19
+    3301670: Merge__2
+    3301672: Merge__20
+    3301674: Merge__21
+    3301676: Merge__22
+    3301678: Merge__23
+    3301680: Merge__24
+    3301682: Merge__25
+    3301684: Merge__26
+    3301686: Merge__27
+    3301688: Merge__28
+    3301690: Merge__29
+    3301692: Merge__3
+    3301694: Merge__30
+    3301696: Merge__31
+    3301698: Merge__32
+    3301700: Merge__33
+    3301702: Merge__34
+    3301704: Merge__35
+    3301706: Merge__36
+    3301708: Merge__37
+    3301710: Merge__38
+    3301712: Merge__39
+    3301714: Merge__4
+    3301716: Merge__40
+    3301718: Merge__41
+    3301720: Merge__42
+    3301722: Merge__43
+    3301724: Merge__44
+    3301726: Merge__45
+    3301728: Merge__46
+    3301730: Merge__47
+    3301732: Merge__48
+    3301734: Merge__49
+    3301736: Merge__5
+    3301738: Merge__50
+    3301740: Merge__51
+    3301742: Merge__52
+    3301744: Merge__53
+    3301746: Merge__54
+    3301748: Merge__55
+    3301750: Merge__56
+    3301752: Merge__57
+    3301754: Merge__58
+    3301756: Merge__59
+    3301758: Merge__6
+    3301760: Merge__60
+    3301762: Merge__61
+    3301764: Merge__62
+    3301766: Merge__63
+    3301768: Merge__64
+    3301770: Merge__65
+    3301772: Merge__66
+    3301774: Merge__67
+    3301776: Merge__68
+    3301778: Merge__7
+    3301780: Merge__8
+    3301782: Merge__9
+    3301784: tree_line
     4300000: Cone_2
     4300002: Cone_1
     4300004: Cone
@@ -4955,8 +5235,88 @@ ModelImporter:
     4301642: Cone_1_206
     4301644: Cone_206
     4301646: Cylinder_206
+    4301648: Merge__1
+    4301650: Merge__2
+    4301652: Merge__3
+    4301654: Merge__4
+    4301656: Merge__5
+    4301658: Merge__6
+    4301660: Merge__7
+    4301662: Merge__8
+    4301664: Merge__9
+    4301666: Merge__10
+    4301668: Merge__11
+    4301670: Merge__12
+    4301672: Merge__13
+    4301674: Merge__14
+    4301676: Merge__15
+    4301678: Merge__16
+    4301680: Merge__17
+    4301682: Merge__18
+    4301684: Merge__19
+    4301686: Merge__20
+    4301688: Merge__21
+    4301690: Merge__22
+    4301692: Merge__23
+    4301694: Merge__24
+    4301696: Merge__25
+    4301698: Merge__26
+    4301700: Merge__27
+    4301702: Merge__28
+    4301704: Merge__29
+    4301706: Merge__30
+    4301708: Merge__31
+    4301710: Merge__32
+    4301712: Merge__33
+    4301714: Merge__34
+    4301716: Merge__35
+    4301718: Merge__36
+    4301720: Merge__37
+    4301722: Merge__38
+    4301724: Merge__39
+    4301726: Merge__40
+    4301728: Merge__41
+    4301730: Merge__42
+    4301732: Merge__43
+    4301734: Merge__44
+    4301736: Merge__45
+    4301738: Merge__46
+    4301740: Merge__47
+    4301742: Merge__48
+    4301744: Merge__49
+    4301746: Merge__50
+    4301748: Merge__51
+    4301750: Merge__52
+    4301752: Merge__53
+    4301754: Merge__54
+    4301756: Merge__55
+    4301758: Merge__56
+    4301760: Merge__57
+    4301762: Merge__58
+    4301764: Merge__59
+    4301766: Merge__60
+    4301768: Merge__61
+    4301770: Merge__62
+    4301772: Merge__63
+    4301774: Merge__64
+    4301776: Merge__65
+    4301778: Merge__66
+    4301780: Merge__67
+    4301782: Merge__68
+    4301784: tree_line
+    7400000: C4D Animation Take
     9500000: //RootNode
   externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat
+    second: {fileID: 2100000, guid: d993f8e724c1dad47b52069e549de39e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat.1
+    second: {fileID: 2100000, guid: f7ed227e35128cf40903ff384e7a6934, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
