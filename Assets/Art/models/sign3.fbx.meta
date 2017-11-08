@@ -1,66 +1,68 @@
 fileFormatVersion: 2
-guid: 08d1e588a5cf7fa4b992360bd81ac19f
-timeCreated: 1510132340
+guid: 61408a76c2cbe3f46a5d6e817e4de299
+timeCreated: 1510144900
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: Cinema4D_Editor
-    100002: cloud_1
-    100004: cloud_2
-    100006: //RootNode
-    100008: crank_base
-    100010: Boole_mug
+    100002: Cinema4D_Editor_2
+    100004: Cube
+    100006: Cylinder
+    100008: Cylinder_1
+    100010: Cylinder_2
+    100012: Plane_1
+    100014: Plane_1_1
+    100016: //RootNode
     400000: Cinema4D_Editor
-    400002: cloud_1
-    400004: cloud_2
-    400006: //RootNode
-    400008: crank_base
-    400010: Boole_mug
-    2300000: cloud_1
-    2300002: cloud_2
-    2300004: crank_base
-    2300006: Boole_mug
-    3300000: cloud_1
-    3300002: cloud_2
-    3300004: crank_base
-    3300006: Boole_mug
-    4300000: crank_base
-    4300002: cloud_1
-    4300004: cloud_2
-    4300006: Boole_mug
+    400002: Cinema4D_Editor_2
+    400004: Cube
+    400006: Cylinder
+    400008: Cylinder_1
+    400010: Cylinder_2
+    400012: Plane_1
+    400014: Plane_1_1
+    400016: //RootNode
+    2300000: Cube
+    2300002: Cylinder
+    2300004: Cylinder_1
+    2300006: Cylinder_2
+    2300008: Plane_1
+    2300010: Plane_1_1
+    3300000: Cube
+    3300002: Cylinder
+    3300004: Cylinder_1
+    3300006: Cylinder_2
+    3300008: Plane_1
+    3300010: Plane_1_1
+    4300000: Plane_1_1
+    4300002: Cylinder_2
+    4300004: Cylinder_1
+    4300006: Cube
+    4300008: Cylinder
+    4300010: Plane_1
     9500000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: axel
-    second: {fileID: 2100000, guid: 26676ec22d23dc7499ac0a2ba84026cd, type: 2}
+      name: sign nails
+    second: {fileID: 2100000, guid: f0cae552119f477448b565723e7259fd, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: crank arm
-    second: {fileID: 2100000, guid: 28126399e8e22d34c9379bb190052ab9, type: 2}
+      name: sign paper
+    second: {fileID: 2100000, guid: bf890be4ae2922a45895026e998dfae2, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: crank clouds
-    second: {fileID: 2100000, guid: 29bae778f5f166140b42b9f09771cb7a, type: 2}
+      name: sign text2
+    second: {fileID: 2100000, guid: 987435b356fc0c2439ab257c2d178dc2, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: crank wood 1
-    second: {fileID: 2100000, guid: 5197ea164162ed141a3ca7978128bcef, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: crank wood 2
-    second: {fileID: 2100000, guid: 97e69508e55b1024099e9be2c803f659, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: crank wood dent
-    second: {fileID: 2100000, guid: ed2ccc76d243a8840bcba73e6b61b099, type: 2}
+      name: sign wood
+    second: {fileID: 2100000, guid: acb3a24229fa0a24199ac9a7b6783026, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
