@@ -16,6 +16,7 @@ public class LightControlForDayNight : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        DynamicGI.UpdateEnvironment();
         transform.rotation = Quaternion.Euler(630 + ((Sun.progress / 1f) * 360), 0, 0);
     }
 }
