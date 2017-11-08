@@ -23,13 +23,12 @@ public class CrankTransformManager : MonoBehaviour {
 			}
 		}
 
-		if(transform.CompareTag("cloud")){
+		if(transform.CompareTag("cup")){
+			controlledByCrank = transform.GetChild(0).GetComponent<Pivot>();
+		}else{
 			controlledByCrank = transform.GetChild(0).GetComponent<Pivot>();
 			cloudControl = transform.GetChild(1).GetComponent<Pivot>();
-		}else{
-			controlledByCrank = gameObject.GetComponentInChildren<Pivot> ();
 		}
-			
 	}
 	
 	public Transform getCameraLerpTransform () {
