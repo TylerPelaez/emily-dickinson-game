@@ -6,6 +6,7 @@ TagManager:
   tags:
   - cloud
   - cup
+  - key
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Pickupable
   - 
   - 
   - 
