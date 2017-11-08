@@ -86,7 +86,6 @@ public class FenceBehavior : MonoBehaviour {
 							birds [indices [current_range, j]].SetActive (true);
 							birds [indices [current_range, j]].GetComponent<BirdBehavior> ().setToFencePosition ();
 							current_birds [j] = birds [indices [current_range, j]];
-
 						}
 
 						if (current_birds [j].GetComponent<BirdBehavior> ().getRow () != win_rows [j]) {
@@ -105,7 +104,7 @@ public class FenceBehavior : MonoBehaviour {
 			if (!ranges [current_range].inRange (sunProgress)) {
 				for (int i = 0; i < current_birds.Length; i++) {
 					if (current_birds[i] != null && !current_birds [i].GetComponent<BirdBehavior> ().getStay ()) {
-						current_birds [i].SetActive (false);
+						current_birds [i].GetComponent<Animator> ().SetBool ("takeoff", true);
 						current_birds [i] = null;
 
 					}
@@ -115,4 +114,5 @@ public class FenceBehavior : MonoBehaviour {
 
 		}
 	}
+
 }
