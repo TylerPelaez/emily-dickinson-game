@@ -6,6 +6,7 @@ public class CrankTransformManager : MonoBehaviour {
 
 	Transform cameraLerpTransform;
 	Pivot controlledByCrank;
+	Pivot cloudControl;
 	public GameObject cloud;
 
 	public Playback sun;
@@ -21,7 +22,13 @@ public class CrankTransformManager : MonoBehaviour {
 				cameraLerpTransform = t;
 			}
 		}
-		controlledByCrank = gameObject.GetComponentInChildren<Pivot> ();
+
+		if(transform.CompareTag("cloud")){
+			controlledByCrank = transform.GetChild(0).GetComponent<Pivot>();
+			cloudControl = transform.GetChild(1).GetComponent<Pivot>();
+		}else{
+			controlledByCrank = gameObject.GetComponentInChildren<Pivot> ();
+		}
 
 	}
 	
@@ -38,6 +45,10 @@ public class CrankTransformManager : MonoBehaviour {
 
 	public Pivot getControlledPivot() {
 		return controlledByCrank;
+	}
+
+	public Pivot getCloudPivot(){
+		return cloudControl;
 	}
 		
 	public Playback getClouds() {
