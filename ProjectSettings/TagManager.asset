@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - cup
+  - cloud
   layers:
   - Default
   - TransparentFX
