@@ -51,7 +51,7 @@ public class PlayerCam : MonoBehaviour
 	private Quaternion lerpRotationOrigin;
 
 	// For turning the crank
-	private const int CIRCLE_TURN_CONSISTENCY_THRESHOLD = 10;
+	private const int CIRCLE_TURN_CONSISTENCY_THRESHOLD = 2;
 	private const int CIRCLE_TURN_CONSISTENCY_MAX = 15;
 	Vector2 oldest;
 	Vector2 middle;
@@ -92,13 +92,14 @@ public class PlayerCam : MonoBehaviour
 	}
 
 	void Update() {
-		if (Input.GetButtonDown ("Interact")) {
+//		Debug.Log ("Down:" +Input.GetMouseButton(0));
+		if (Input.GetMouseButtonDown(0)) {
 			inputState = CURRENT_INPUT.INTERACT_DOWN;
-		} else if (Input.GetButton ("Interact")) {
+		} else if (Input.GetMouseButton(0)) {
 			inputState = CURRENT_INPUT.INTERACT_HELD;
-		} else if (Input.GetButtonUp ("Interact")) {
+		} else if (Input.GetMouseButtonUp(0)) {
 			inputState = CURRENT_INPUT.INTERACT_UP;
-		} else if (Input.GetButtonDown ("Cancel Interact")) {
+		} else if (Input.GetMouseButtonDown(1)) {
 			inputState = CURRENT_INPUT.CANCEL_INTERACT;
 		} else {
 			inputState = CURRENT_INPUT.NONE;
@@ -124,12 +125,16 @@ public class PlayerCam : MonoBehaviour
             //playerInteract.centerObjectInCamera ();
             LookRotation(gameObject.transform, Camera.main.transform);
 
+			playerInteract.centerObjectInCamera ();
+
         }
         else if (cameraState == CAMERA_STATE.LOCK_CAM){
 			crankCrank ();
 			SetCursorLock ();
         }
-        inputState = CURRENT_INPUT.NONE;
+
+		inputState = CURRENT_INPUT.NONE;
+
     }
 
 	public void beginLerpToLockPos(CrankTransformManager snappedCrankTransformManager) {
@@ -233,7 +238,7 @@ public class PlayerCam : MonoBehaviour
 
 
 			// Mouse is not moving or it moves very slowly
-			const float epsilon = 0.001f;
+			const float epsilon = 0.0000001f;
 			if (Mathf.Abs (deltaX) < epsilon || Mathf.Abs (deltaY) < epsilon) {
 				consistentTurnCount += consistentTurnCount < 0 ? 5 : consistentTurnCount > 0 ? -5 : 0;
 			}
@@ -268,7 +273,9 @@ public class PlayerCam : MonoBehaviour
 			}
 			*/
 
-			consistentTurnCount += dotProduct > 0 ? 1 : -1;
+			consistentTurnCount += dotProduct > 0 ? 5 : -5;
+
+//			Debug.Log ("Turn Count:" + consistentTurnCount);
 
 			if (consistentTurnCount > CIRCLE_TURN_CONSISTENCY_MAX) {
 				consistentTurnCount = CIRCLE_TURN_CONSISTENCY_MAX;
@@ -278,7 +285,9 @@ public class PlayerCam : MonoBehaviour
 
 			if (consistentTurnCount > CIRCLE_TURN_CONSISTENCY_THRESHOLD) {//right
 				turn = 0;
+//				Debug.Log ("RIGHT");
 				if (sun != null) {
+					//Debug.Log ("SUN NOT NULL");
 					sun.Pause (false);
 					clouds.Pause (false);
 					effects.Pause (false);
@@ -297,7 +306,9 @@ public class PlayerCam : MonoBehaviour
 				}
 			} else if (consistentTurnCount < -CIRCLE_TURN_CONSISTENCY_THRESHOLD) {//left
 				turn = 1;
+//				Debug.Log ("LEft");
 				if (sun != null) {
+//					Debug.Log ("SUN NOT NULL");
 					sun.Pause (false);
 					clouds.Pause (false);
 					effects.Pause (false);
@@ -322,7 +333,13 @@ public class PlayerCam : MonoBehaviour
 				turn = -1;
 			}
 		} else {
-			if (sun != null) {
+			if (consistentTurnCount > 0) {
+				consistentTurnCount--;
+			} else if (consistentTurnCount < 0)
+			{
+				consistentTurnCount++;
+			} else if (sun != null) {
+//				Debug.Log ("PAUSING");
 				sun.Pause (true);
 				clouds.Pause (true);
 				effects.Pause (true);

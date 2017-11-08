@@ -31,12 +31,7 @@ public class PlayerInteract : MonoBehaviour {
 		pickupTextObject = GameObject.Find ("PickupText").GetComponent<Text>();
 	}
 
-    void FixedUpdate ()
-    {
-        centerObjectInCamera();
-    }
-
-	void centerObjectInCamera () {
+	public void centerObjectInCamera () {
         if (heldObject != null)
         {
             Vector3 posVec = new Vector3(cameraTransform.position.x + (cameraTransform.forward.x * HOLD_DISTANCE), cameraTransform.position.y + (cameraTransform.forward.y * HOLD_DISTANCE), cameraTransform.position.z + (cameraTransform.forward.z * HOLD_DISTANCE));
