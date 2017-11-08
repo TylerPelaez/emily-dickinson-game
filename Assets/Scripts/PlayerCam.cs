@@ -59,6 +59,7 @@ public class PlayerCam : MonoBehaviour
 	int consistentTurnCount;
 
 	// Sun revolution
+	public int turn {get; set;} //0 right 1 left
 	const float SUN_REVOLVE_SPEED = 60f;
 	Playback sun;
 	Playback clouds;
@@ -87,7 +88,7 @@ public class PlayerCam : MonoBehaviour
 		inputState = CURRENT_INPUT.NONE;
 		deltaX = 0f;
 		deltaY = 0f;
-
+		turn = -1;
 	}
 
 	void Update() {
@@ -275,7 +276,8 @@ public class PlayerCam : MonoBehaviour
 				consistentTurnCount = -CIRCLE_TURN_CONSISTENCY_MAX;
 			}
 
-			if (consistentTurnCount > CIRCLE_TURN_CONSISTENCY_THRESHOLD) {
+			if (consistentTurnCount > CIRCLE_TURN_CONSISTENCY_THRESHOLD) {//right
+				turn = 0;
 				if (sun != null) {
 					sun.Pause (false);
 					clouds.Pause (false);
@@ -287,14 +289,14 @@ public class PlayerCam : MonoBehaviour
 
 					if (currentCrankPivot != null){
 						//dissappears
-						//cloudRender.material.SetColor("_TintColor", new Color(255f, 255f, 255f, 1f));
 						currentCrankPivot.Rotate(Time.fixedDeltaTime * CLOUD_ALPHA_SPEED);
 					}
 				}else{
 					currentCrankPivot.Rotate(Time.fixedDeltaTime * CLOUD_ALPHA_SPEED);
 					cloudPivot.Rotate(Time.fixedDeltaTime * CLOUD_ALPHA_SPEED);
 				}
-			} else if (consistentTurnCount < -CIRCLE_TURN_CONSISTENCY_THRESHOLD) {
+			} else if (consistentTurnCount < -CIRCLE_TURN_CONSISTENCY_THRESHOLD) {//left
+				turn = 1;
 				if (sun != null) {
 					sun.Pause (false);
 					clouds.Pause (false);
@@ -317,6 +319,7 @@ public class PlayerCam : MonoBehaviour
 					clouds.Pause (true);
 					effects.Pause (true);
 				}
+				turn = -1;
 			}
 		} else {
 			if (sun != null) {
@@ -324,6 +327,7 @@ public class PlayerCam : MonoBehaviour
 				clouds.Pause (true);
 				effects.Pause (true);
 			}
+			turn = -1;
 		}
     }
 		
