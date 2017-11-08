@@ -65,7 +65,7 @@ public class FenceBehavior : MonoBehaviour {
 		for (int i = 0; i < 15; i++) {
 			birds [i] = Instantiate (birdPrefab, transform.position , transform.rotation);
 
-			birds [i].GetComponent<BirdBehavior>().setFencePosition(new Vector3(transform.position.x - 1.5f + ((i % 5) * 0.5f) , transform.position.y - 0.3f + ((i % 3) * 0.5f), transform.position.z));
+			birds [i].GetComponent<BirdBehavior>().setFencePosition(new Vector3(transform.position.x  , transform.position.y - 0.3f + ((i % 3) * 0.5f), transform.position.z - 1.3f + ((i % 5) * .75f)));
 			birds [i].GetComponent<BirdBehavior> ().setRowAndColumn (i % 3, i % 5);
 			birds [i].SetActive (false);
 

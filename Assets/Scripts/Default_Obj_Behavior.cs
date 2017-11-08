@@ -41,4 +41,7 @@ public class Default_Obj_Behavior : MonoBehaviour {
 	void OnTriggerExit(Collider col){
 		snap_obj = null;
 	}
+	void OnCollisionEnter(Collision col) {
+		Debug.Log (col.gameObject.name);
+	}
 }
