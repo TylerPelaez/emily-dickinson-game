@@ -1,30 +1,64 @@
 fileFormatVersion: 2
-guid: 33cf8173407492e4781749d11cb83ff0
-timeCreated: 1510111889
+guid: 09464cd23f10d2041bdd1560f78d8619
+timeCreated: 1510132620
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: Cinema4D_Editor
-    100002: //RootNode
-    100004: mug
+    100002: Random
+    100004: Random_MeshPart0
+    100006: Random_MeshPart1
+    100008: //RootNode
+    100010: Random_1
+    100012: Random_1_MeshPart0
+    100014: Random_1_MeshPart1
     400000: Cinema4D_Editor
-    400002: //RootNode
-    400004: mug
-    2300000: mug
-    3300000: mug
-    4300000: mug
+    400002: Random
+    400004: Random_MeshPart0
+    400006: Random_MeshPart1
+    400008: //RootNode
+    400010: Random_1
+    400012: Random_1_MeshPart0
+    400014: Random_1_MeshPart1
+    2300000: Random_MeshPart0
+    2300002: Random_MeshPart1
+    2300004: Random_1_MeshPart0
+    2300006: Random_1_MeshPart1
+    3300000: Random_MeshPart0
+    3300002: Random_MeshPart1
+    3300004: Random_1_MeshPart0
+    3300006: Random_1_MeshPart1
+    4300000: Random_MeshPart0
+    4300002: Random_MeshPart1
+    4300004: Random_1_MeshPart0
+    4300006: Random_1_MeshPart1
     9500000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: No Name
-    second: {fileID: 2100000, guid: d889d117d9e282a49bcd16003bcb20aa, type: 2}
+      name: strange leaf 3
+    second: {fileID: 2100000, guid: 1700374ea155c5b4292d0e1f30645f75, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: strange tree bark
+    second: {fileID: 2100000, guid: 22911d59a4a6b6448aa99d0327321460, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: strange tree leaf 1
+    second: {fileID: 2100000, guid: 23338b3809990e049b5dbb66da4c85c4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: strange tree leaf 2
+    second: {fileID: 2100000, guid: 7de11d03b74daec47b20e06bec4cb91e, type: 2}
   materials:
     importMaterials: 1
-    materialName: 1
-    materialSearch: 2
+    materialName: 0
+    materialSearch: 1
     materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
