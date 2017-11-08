@@ -93,6 +93,7 @@ public class PlayerCam : MonoBehaviour
 		deltaX = 0f;
 		deltaY = 0f;
 		turn = -1;
+		click = click.GetComponent<AudioSource>();
 	}
 
 	void Update() {
@@ -302,11 +303,11 @@ public class PlayerCam : MonoBehaviour
 
 					if (currentCrankPivot != null){
 						//dissappears
-						click.PlayDelayed(0.1f);
+						click.mute = false;
 						currentCrankPivot.Rotate(Time.fixedDeltaTime * CLOUD_ALPHA_SPEED);
 					}
 				}else{
-					click.PlayDelayed(0.1f);
+					click.mute = false;
 					currentCrankPivot.Rotate(Time.fixedDeltaTime * CLOUD_ALPHA_SPEED);
 					cloudPivot.Rotate(Time.fixedDeltaTime * CLOUD_ALPHA_SPEED);
 				}
@@ -323,12 +324,12 @@ public class PlayerCam : MonoBehaviour
 					clouds.reverse = false;
 					effects.reverse = false;
 					if (currentCrankPivot != null) {
-						click.PlayDelayed(0.1f);
+						click.mute = false;
 						currentCrankPivot.Rotate(-Time.fixedDeltaTime * CLOUD_ALPHA_SPEED);
 						//cloudRender.material.SetColor ("_TintColor", new Color (255f, 255f, 255f, 0f));
 					}
 				}else{
-					click.PlayDelayed(0.1f);
+					click.mute = false;
 					currentCrankPivot.Rotate(-Time.fixedDeltaTime * CLOUD_ALPHA_SPEED);
 					cloudPivot.Rotate(-Time.fixedDeltaTime * CLOUD_ALPHA_SPEED);
 				}
@@ -339,6 +340,7 @@ public class PlayerCam : MonoBehaviour
 					effects.Pause (true);
 				}
 				turn = -1;
+				click.mute = true;
 			}
 		} else {
 			if (consistentTurnCount > 0) {
@@ -353,6 +355,7 @@ public class PlayerCam : MonoBehaviour
 				effects.Pause (true);
 			}
 			turn = -1;
+			click.mute = true;
 		}
     }
 		
