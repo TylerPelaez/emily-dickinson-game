@@ -10,20 +10,25 @@ ModelImporter:
     100004: cloud_2
     100006: //RootNode
     100008: crank_base
+    100010: Boole_mug
     400000: Cinema4D_Editor
     400002: cloud_1
     400004: cloud_2
     400006: //RootNode
     400008: crank_base
+    400010: Boole_mug
     2300000: cloud_1
     2300002: cloud_2
     2300004: crank_base
+    2300006: Boole_mug
     3300000: cloud_1
     3300002: cloud_2
     3300004: crank_base
+    3300006: Boole_mug
     4300000: crank_base
     4300002: cloud_1
     4300004: cloud_2
+    4300006: Boole_mug
     9500000: //RootNode
   externalObjects:
   - first:

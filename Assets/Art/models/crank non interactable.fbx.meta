@@ -8,12 +8,17 @@ ModelImporter:
     100000: Cinema4D_Editor
     100002: //RootNode
     100004: crank_base
+    100006: Boole_mug_1
     400000: Cinema4D_Editor
     400002: //RootNode
     400004: crank_base
+    400006: Boole_mug_1
     2300000: crank_base
+    2300002: Boole_mug_1
     3300000: crank_base
+    3300002: Boole_mug_1
     4300000: crank_base
+    4300002: Boole_mug_1
     9500000: //RootNode
   externalObjects:
   - first:
@@ -26,6 +31,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Mat.1
     second: {fileID: 2100000, guid: f7ed227e35128cf40903ff384e7a6934, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: d889d117d9e282a49bcd16003bcb20aa, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -46,6 +56,21 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: crank handle
     second: {fileID: 2100000, guid: 0ed7b27197a44ab42b43f25a1c80659d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: crank wood 1
+    second: {fileID: 2100000, guid: 5197ea164162ed141a3ca7978128bcef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: crank wood 2
+    second: {fileID: 2100000, guid: 97e69508e55b1024099e9be2c803f659, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: crank wood dent
+    second: {fileID: 2100000, guid: ed2ccc76d243a8840bcba73e6b61b099, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
