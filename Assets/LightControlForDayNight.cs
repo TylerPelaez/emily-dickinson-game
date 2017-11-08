@@ -24,7 +24,7 @@ public class LightControlForDayNight : MonoBehaviour {
           //  clouds.Play();
 
         }
-
+        DynamicGI.UpdateEnvironment();
         transform.rotation = Quaternion.Euler(630 + ((Sun.progress / 1f) * 360), 0, 0);
     }
 }
