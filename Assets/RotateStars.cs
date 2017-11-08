@@ -17,11 +17,11 @@ public class RotateStars : MonoBehaviour {
         transform.rotation *= Quaternion.Euler( rotationSpeed);
         if(sky.progress> .7f||sky.progress<.3)
         {
-            starMat.SetColor("_TintColor", Color.Lerp(starMat.GetColor("_TintColor"), new Color(183, 183, 183, 0), 8 * Time.deltaTime));
+			starMat.SetColor("_TintColor", Color.Lerp(starMat.GetColor("_TintColor"), new Color(.5f, .5f, .5f, 1), 8 * Time.deltaTime));
         }
         else
         {
-            starMat.SetColor("_TintColor", Color.Lerp(starMat.GetColor("_TintColor"), new Color(183, 183, 183, 1), 8 * Time.deltaTime));
+			starMat.SetColor("_TintColor", Color.Lerp(starMat.GetColor("_TintColor"), new Color(.5f, .5f, .5f, 0), 8 * Time.deltaTime));
         }
     }
 }

@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerInteract : MonoBehaviour {
 
-	const float HOLD_DISTANCE = 2.0f;
-	const float INTERACT_DISTANCE = 3.0f;
+	const float HOLD_DISTANCE = .75f;
+	const float INTERACT_DISTANCE = 3f;
 	const float HOLD_DISTANCE_BUFFER = 0.1f;
 
 	// External References being found at start or at runtime

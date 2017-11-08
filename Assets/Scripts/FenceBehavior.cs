@@ -47,9 +47,11 @@ public class FenceBehavior : MonoBehaviour {
 
 	private int[] win_rows = new int[] { 2, 1, 1, 0, 1};
 
+	public AudioSource end;
 
 	// Use this for initialization
 	void Start () {
+		end = end.GetComponent<AudioSource>();
 		current_range = -1;
 		ranges = new RotationRangeObject[3];
 		ranges[0] = new RotationRangeObject (.2f, .3f);
@@ -98,6 +100,9 @@ public class FenceBehavior : MonoBehaviour {
 					if (win) {
 						trees.GetComponent<Animator> ().SetBool ("finished", true);
 						trees.GetComponentInChildren<treefall> ().gameObject.SetActive (false);
+						if(!end.isPlaying){
+							end.Play();
+						}
 					}
 
 					break;

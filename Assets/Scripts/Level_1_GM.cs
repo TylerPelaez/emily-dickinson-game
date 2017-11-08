@@ -7,11 +7,13 @@ public class Level_1_GM : MonoBehaviour {
 	public GameObject player;
 	public GameObject trees;
 	public GameObject treecollider;
+	public AudioSource end;
 
 	bool turning;
 	// Use this for initialization
 	void Start () {
 		turning = false;
+		end = end.GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -33,6 +35,9 @@ public class Level_1_GM : MonoBehaviour {
 		if(turning && sun.progress > 0.20f && sun.progress < 0.30f){
 			trees.GetComponent<Animator> ().SetBool ("finished", true);
 			treecollider.GetComponent<Collider> ().enabled = false;
+			if(!end.isPlaying){
+				end.Play();
+			}
 		}
 	}
 }

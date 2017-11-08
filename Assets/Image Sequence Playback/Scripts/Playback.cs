@@ -120,10 +120,11 @@ public class Playback : MonoBehaviour
 
     [SerializeField]
     //float time = 0;
-    float frame = 0;
+
+    float frame = 180;
     //int lastIndex = 0;
     //int framesPlayed = 0;
-    public float delta = 0;
+    public float delta = 9;
     void Update()
     {
 
@@ -164,7 +165,7 @@ public class Playback : MonoBehaviour
                 PlayBack();
                 framesPlayed++;
             }*/
-            if(!firstRun)
+			if(!firstRun&&sequence.Length>350)
             {
                 delta = 9;
                 frame = 180;
@@ -301,7 +302,7 @@ public class Playback : MonoBehaviour
 
         if (!isPlaying)
         {
-            index = 0;
+            index = 180;
             isPlaying = true;
             //time = (1f/FPS) - delay;
             delta -= delay;
@@ -366,7 +367,7 @@ public class Playback : MonoBehaviour
             {
                 sequence[i] = (Texture2D)obj[i];
             }
-            index = 0;
+            index = 180;
             UpdateFrame();
             if (play) Play(startDelay);
         }
@@ -399,7 +400,7 @@ public class Playback : MonoBehaviour
             return;
         playAfterAsync = play;
         isLoadingAsync = true;
-        asyncIndex = 0;
+        asyncIndex = 180;
         asyncFiles = resourcePaths;
         sequence = new Texture2D[resourcePaths.Count];
     }
